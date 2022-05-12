@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.smartcampusmaua_app.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+packages.add(new RCTMqttPackage());
 
 public class MainApplication extends Application implements ReactApplication {
 
