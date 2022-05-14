@@ -2,11 +2,12 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
-import Home from './src/pages/Home';
-import {name as appName} from './app.json';
-import { SignIn } from './src/pages/SignIn';
-import { DataExport } from './src/pages/DataExport';
+ import {AppRegistry} from 'react-native';
+ import {name as appName} from './app.json';
+ import App from './src/pages/Navigation';
+ import DataExport from './src/pages/DataExport';
 
-AppRegistry.registerComponent(appName, () => DataExport);
-//AppRegistry.registerComponent(appName, () => SignIn);
+ //AppRegistry.registerComponent(appName, () => DataExport);
+ 
+ AppRegistry.registerComponent(appName, () => App);
+ //AppRegistry.registerComponent(appName, () => SignIn);

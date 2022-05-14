@@ -15,8 +15,6 @@ export const styles = StyleSheet.create({
     height: '60%',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-evenly'
-    
   },
   button: {
     

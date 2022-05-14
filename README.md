@@ -81,4 +81,3 @@ yarn react-native run-android
 ```
 
 
-# healthbook_app

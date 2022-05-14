@@ -3,7 +3,9 @@ import {
   View,
   Text,
   Image,
-  SafeAreaView
+  SafeAreaView,
+  Button,
+  TouchableHighlight
 } from 'react-native';
 
 import { styles } from './style';
@@ -13,7 +15,13 @@ import Heart from '../../assets/pulse.svg';
 import Activity from '../../assets/pulse-svgrepo-com.svg';
 import HealthBookTopBar from '../../assets/HeathBookTopBar.png';
 
-const Home: React.FC<{}> = () => {
+
+type HomeScreenProps = {
+  navigation: any;
+  route: any;
+}
+
+const Home = ({ navigation, route }: HomeScreenProps) => {
 
   return(
     <View style={styles.container}>
@@ -35,15 +43,25 @@ const Home: React.FC<{}> = () => {
           <Text style={styles.text}> Telemetria</Text>
         </View>
 
-        <View style={styles.button}>
-          <Heart  style ={styles.icon} fill={"#ff0000"} />
-          <Text style={styles.text}> Saúde</Text>
-        </View>
+       
+        <TouchableHighlight style={styles.button} onPress={() => {
+          navigation.navigate('Details', {
+          }); }}>
+          <View style={styles.button}>
+            <Heart  style ={styles.icon} fill={"#ff0000"} />
+            <Text style={styles.text}> Saúde</Text>
+          </View>
+        </TouchableHighlight>
 
+        <TouchableHighlight style={styles.button} onPress={() => {
+          navigation.navigate('DataExport', {
+          }); }}>
         <View style={styles.button}>
           <Clock style ={styles.icon} fill={"#ffffff"} />
           <Text style={styles.text}> Tempo Real</Text>
         </View>
+        </TouchableHighlight>
+
       </View>
     </View>
   )

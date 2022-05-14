@@ -62,5 +62,10 @@ export const styles = StyleSheet.create({
     marginLeft: 20
 
 
+  },
+
+  touchable: {
+    width:'100%',
   }
+
   });

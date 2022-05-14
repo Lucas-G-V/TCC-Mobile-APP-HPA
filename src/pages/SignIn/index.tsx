@@ -17,8 +17,12 @@ import { styles } from './styles';
 
 import { ButtonIcon } from '../../components/ButtonIcon';
 
+type SigninScreenProps = {
+  navigation: any;
+  route: any;
+}
 
-export function SignIn(){
+const SignIn = ({ navigation, route }: SigninScreenProps) => {
   
   return(
     <View style={styles.container}>
@@ -31,10 +35,16 @@ export function SignIn(){
           <View style = {styles.body}>
               <TextInput style = {styles.input}>E-mail</TextInput>
               <TextInput style = {styles.input}> Senha</TextInput>
-              <ButtonIcon title='Acessar'>
+              
+              
+              <ButtonIcon title='Acessar' onPress={() => {
+          navigation.navigate('Home', {
+          }); }}>
                 </ButtonIcon>
           </View>
       </View>
     
   );
 }
+
+export default SignIn;

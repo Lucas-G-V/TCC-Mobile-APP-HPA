@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Image,
+  Button,
   SafeAreaView
 } from 'react-native';
 
@@ -13,7 +14,12 @@ import Heart from '../../assets/pulse.svg';
 import Activity from '../../assets/pulse-svgrepo-com.svg';
 import HealthBookTopBar from '../../assets/HeathBookTopBar.png';
 
-function DataExport() {
+type DataExportScreenProps = {
+  navigation: any;
+  route: any;
+}
+
+const DataExport = ({ navigation, route }: DataExportScreenProps) => {
 
   return (
     <View style={styles.container}>
@@ -23,12 +29,15 @@ function DataExport() {
           <Image source={HealthBookTopBar} style={styles.image} />
         </View>
       </View>
-
+        
       <View style={styles.body}>
+        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
           <Text style={styles.text}> Thallesmamamdor</Text>
       </View>
+      
     </View>
   );
 }
 
-export { DataExport };
+export default DataExport;
