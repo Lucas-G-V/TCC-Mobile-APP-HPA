@@ -1,18 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   Image,
-  Button,
   SafeAreaView
 } from 'react-native';
 
 import { styles } from './style';
-import Clock from '../../assets/clock-svgrepo-com.svg';
-import Compass from '../../assets/compass-svgrepo-com.svg';
-import Heart from '../../assets/pulse.svg';
-import Activity from '../../assets/pulse-svgrepo-com.svg';
 import HealthBookTopBar from '../../assets/HeathBookTopBar.png';
+
+
+/*
+---------------------------------------------MQTT--------------------------------------------------------------------------------------------------------
+export function Mqtt(){
+  const [mqttMessage, setMqttMessage] = useState({
+      dados:{
+          temperatura:0
+      },
+  });
+
+  useEffect(() => {
+
+      const mqttSubClient = {
+          uri: 'test.mosquitto.org:1883',
+          user: '',
+          pass: '',
+          auth: false,
+          clientId: 'healthbook_esp32',
+          topic: "temperatura",
+          qos: 0,
+      };
+      MQTT.createClient({
+
+          uri: mqttSubClient.uri,
+          clientId: mqttSubClient.clientId,
+
+      }).then(function(client) {
+
+          client.on('closed', function() {
+          // console.log('mqtt.event.closed');
+          });
+
+          client.on('error', function(msg) {
+          // console.log('mqtt.event.error', msg);
+          });
+
+          client.on('message', function(msg) {
+              setMqttMessage(JSON.parse(msg.data));
+              // console.log(value)
+          });
+
+          client.connect();
+          client.subscribe(mqttSubClient.topic, 0);
+
+      }).catch(function(err){
+          // console.log(err);
+      });
+
+  }, []);
+
+ 
+  //useEffect (() =>  {
+  //}, [mqttMessage]);
+
+
+  return (
+      <View>
+        <Text> Temperatura: </Text>
+      </View>
+  )
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
 type DataExportScreenProps = {
   navigation: any;
@@ -29,11 +88,8 @@ const DataExport = ({ navigation, route }: DataExportScreenProps) => {
           <Image source={HealthBookTopBar} style={styles.image} />
         </View>
       </View>
-        
       <View style={styles.body}>
-        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-          <Text style={styles.text}> Thallesmamamdor</Text>
+          <Text style={styles.text}> Dados Firebase:</Text>
       </View>
       
     </View>
