@@ -89,7 +89,7 @@ const DataExport = ({ navigation, route }: DataExportScreenProps) => {
         </View>
       </View>
       <View style={styles.body}>
-          <Text style={styles.text}> Dados Firebase:</Text>
+          <Text style={styles.text}> Dado Firebase:</Text>
       </View>
       
     </View>
