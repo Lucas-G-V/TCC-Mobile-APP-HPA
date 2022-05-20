@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../Home';
 import SignIn from '../SignIn';
 import DataExport from '../DataExport';
+import Navegacao from '../Navegacao';
 
 
 
@@ -44,6 +45,7 @@ function App() {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="DataExport" component={DataExport} />
+        <Stack.Screen name="Navegacao" component={Navegacao} />
       </Stack.Navigator>
     </NavigationContainer>
   );
