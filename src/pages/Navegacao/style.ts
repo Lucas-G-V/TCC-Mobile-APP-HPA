@@ -116,8 +116,8 @@ export const styles = StyleSheet.create({
     height: 'auto',
     fontWeight: "bold", 
     color: '#000',
-    fontSize: 30,
-    marginLeft: 30
+    fontSize: 20,
+    marginLeft: 0
   },
   titleh2:{
     textAlign: 'center',
@@ -153,7 +153,7 @@ export const styles = StyleSheet.create({
   play:{
     flexDirection:'column',
     alignItems: 'center',
-    height:'20%',
+    height:'40%',
     alignContent: 'space-around',
   },
   arrow:{
