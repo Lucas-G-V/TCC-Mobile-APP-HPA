@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     color: 'black'
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
     marginBottom:15,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     width:'100%'
   },
   header:{
-    marginBottom: -30,
+    marginBottom: -20,
   },
   body:{
     height: '80%',
@@ -159,5 +159,38 @@ export const styles = StyleSheet.create({
   arrow:{
     height: 40,
     width: 40,
+  },
+  mapContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  scrollContainer: {
+    flex: 0.5,
+    backgroundColor: '#ffffff',
+  },
+  contentContainer: {
+    padding: 12,
+  },
+  option: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: 12,
+  },
+  result: {
+    borderWidth: 1,
+    borderColor: '#38B6FF',
+    width: '100%',
+    padding: 10,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 12,
+    width: '100%',
   },
   });
