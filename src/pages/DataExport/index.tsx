@@ -9,11 +9,9 @@ import {
   SafeAreaView,
   TouchableHighlight
 } from 'react-native';
-import { options } from './style';
 import base64 from 'react-native-base64';
-import CheckBox from '@react-native-community/checkbox';
 import {BleManager, Device} from 'react-native-ble-plx';
-import {styles} from '../DataExport/style';
+import {styles} from './style';
 import {LogBox} from 'react-native';
 
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
@@ -22,8 +20,6 @@ import Clock from '../../assets/clock-svgrepo-com.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
-import Play from '../../assets/play-svgrepo-com.svg';
-
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -45,9 +41,6 @@ function BoolToString(input: boolean) {
     return '0';
   }
 }
-
-
-
 type TerlemetriaScreenProps = {
   navigation: any;
   route: any;
@@ -233,7 +226,7 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
               <View style={styles.component}>
                 <Clock style={styles.icon} fill={"#000000"}></Clock>
                 <View style={styles.textview}>
-                      <Text style={styles.titleh2}>{velocidade}</Text>
+                      <Text style={styles.titleh2}>{Duracao}</Text>
                       <Text style={styles.titleh2}>min</Text>
                 </View>
               </View>
