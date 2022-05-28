@@ -33,11 +33,14 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
       </View>
 
       <View style={styles.body}>
+      <TouchableHighlight style={styles.button} onPress={() => {
+          navigation.navigate('Navegacao', {
+          }); }}>
         <View style={styles.button}>
             <Compass  style ={styles.icon} fill={"#000000"} /> 
             <Text style={styles.text}> Navegacao</Text>
         </View>
-
+      </TouchableHighlight>
         <View style={styles.button}>
           <Activity  style ={styles.icon} fill={"#00FFE2"} />
           <Text style={styles.text}> Telemetria</Text>
