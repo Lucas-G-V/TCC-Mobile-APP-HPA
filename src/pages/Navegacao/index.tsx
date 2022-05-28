@@ -305,6 +305,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
           </View>
         </View>
 
+
         <View style={styles.result}>
           <Text style={styles.titleText}>Latitude: {location?.coords?.latitude || ''}</Text>
           <Text style={styles.titleText}>Longitude: {location?.coords?.longitude || ''}</Text>
