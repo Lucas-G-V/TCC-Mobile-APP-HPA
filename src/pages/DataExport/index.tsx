@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import {
   TouchableOpacity,
   Button,
@@ -9,9 +9,13 @@ import {
   SafeAreaView,
   TouchableHighlight
 } from 'react-native';
+import { options } from './style';
 import base64 from 'react-native-base64';
+//import CheckBox from '@react-native-community/checkbox';
 import {BleManager, Device} from 'react-native-ble-plx';
-import {styles} from './style';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import {styles} from '../DataExport/style';
 import {LogBox} from 'react-native';
 
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
@@ -20,6 +24,8 @@ import Clock from '../../assets/clock-svgrepo-com.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
+import Play from '../../assets/play-svgrepo-com.svg';
+
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -41,17 +47,43 @@ function BoolToString(input: boolean) {
     return '0';
   }
 }
+
 type TerlemetriaScreenProps = {
   navigation: any;
   route: any;
 }
 
-export default function App({ navigation, route }: TerlemetriaScreenProps) {
-  
+const App = ({ navigation, route }: TerlemetriaScreenProps) => {
   let Glicose = 100;
   let Duracao = 100;
   let velocidade = 10;
   let DistanciaPercorrida = 10;
+  const [input, setInput] = useState('');
+  let STORAGE_KEY = '@Heart';
+  const saveData = async (results:any) => {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, results)
+      
+    } catch (e) {
+      
+    }
+  }
+  const readData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(STORAGE_KEY);
+      console.log("teste");
+      console.log(value);
+  
+      if (value !== null) {
+        setInput(value);
+      }
+    } catch (e) {
+      
+    }
+  };
+
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
   //Is a device connected?
   const [isConnected, setIsConnected] = useState(false);
@@ -60,8 +92,9 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
   const [connectedDevice, setConnectedDevice] = useState<Device>();
 
   const [message, setMessage] = useState('Nothing Yet');
+  const [datasaveHeart, setDataSaveHeart] = useState('');
   const [boxvalue, setBoxValue] = useState(false);
-
+  
   // Scans availbale BLT Devices and then call connectDevice
   async function scanDevices() {
     PermissionsAndroid.request(
@@ -110,6 +143,7 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
         setIsConnected(false);
       }
     }
+    saveData(datasaveHeart);
   }
   //Function to send data to ESP32
   async function sendBoxValue(value: boolean) {
@@ -144,7 +178,9 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
           .readCharacteristicForService(SERVICE_UUID, MESSAGE_UUID)
           .then(valenc => {
             setMessage(base64.decode(valenc?.value));
+            
           });
+          
 
         //BoxValue
         device
@@ -159,15 +195,22 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
           MESSAGE_UUID,
           (error, characteristic) => {
             if (characteristic?.value != null) {
-              setMessage(base64.decode(characteristic?.value));
+              setMessage(base64.decode(characteristic?.value))
               console.log(
                 'Message update received: ',
                 base64.decode(characteristic?.value),
-              );
+
+                
+              )
+
+
             }
+            
           },
           'messagetransaction',
+          
         );
+        
         //BoxValue
         device.monitorCharacteristicForService(
           SERVICE_UUID,
@@ -184,19 +227,40 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
           'boxtransaction',
         );
         console.log('Connection established');
+        
+        
+       
       });
+      //////////////////
+      
+      
+      
   }
+  useEffect(()=>{
+    if(message != 'Nothing Yet'){
+      setDataSaveHeart(datasaveHeart+message+', ');
+      console.log(datasaveHeart);
+      
+    }
+    
+
+  },[message]);
+  
+  
   return (
 
+    
     <View style={styles.container}>
+      
+      
       <View style={styles.header}>
         <SafeAreaView style={styles.AndroidSafeArea} />
         <View style={styles.backgroundstatusbar}>
-        <TouchableHighlight onPress={() => {
+        <TouchableOpacity onPress={() => {
           navigation.navigate('Home', {
           }); }}>
             <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
-          </TouchableHighlight>
+          </TouchableOpacity>
           <Text style={styles.title}>TELEMETRIA</Text>
           <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
@@ -208,7 +272,13 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
             </View>
             <View style={styles.section}>
               <View style={styles.component}>
-                  <Heart style={styles.icon} fill={"#000000"}></Heart>
+                <TouchableOpacity onPress={() => {
+              navigation.navigate('File', {
+              }); }}>
+                <Heart style={styles.icon} fill={"#000000"}></Heart>
+                </TouchableOpacity>
+                
+                  
                   <View style={styles.textview}>
                     <Text style={styles.titleh2}>{message}</Text>
                     <Text style={styles.titleh2}>bpm</Text>
@@ -226,7 +296,7 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
               <View style={styles.component}>
                 <Clock style={styles.icon} fill={"#000000"}></Clock>
                 <View style={styles.textview}>
-                      <Text style={styles.titleh2}>{Duracao}</Text>
+                      <Text style={styles.titleh2}>{velocidade}</Text>
                       <Text style={styles.titleh2}>min</Text>
                 </View>
               </View>
@@ -254,10 +324,19 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
                       title="Disonnect"
                       onPress={() => {
                         disconnectDevice();
+                        
                       }}
                       disabled={false}
                     />
                   )}
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setDataSaveHeart(datasaveHeart+', '+message)}>
+                  <Text>Leitura</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => readData}>
+                  <Text>Teste</Text>
+
                 </TouchableOpacity>
               </View>
               
@@ -266,3 +345,4 @@ export default function App({ navigation, route }: TerlemetriaScreenProps) {
   );
 
 }
+export default App;
