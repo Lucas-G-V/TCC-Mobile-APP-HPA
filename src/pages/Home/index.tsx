@@ -5,7 +5,7 @@ import {
   Image,
   SafeAreaView,
   Button,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 
 import { styles } from './style';
@@ -33,37 +33,37 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
       </View>
 
       <View style={styles.body}>
-      <TouchableHighlight style={styles.button} onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate('Navegacao', {
           }); }}>
         <View style={styles.button}>
             <Compass  style ={styles.icon} fill={"#000000"} /> 
             <Text style={styles.text}> Navegacao</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
         <View style={styles.button}>
           <Activity  style ={styles.icon} fill={"#00FFE2"} />
           <Text style={styles.text}> Telemetria</Text>
         </View>
 
        
-        <TouchableHighlight style={styles.button} onPress={() => {
-          navigation.navigate('Details', {
+        <TouchableOpacity style={styles.button} onPress={() => {
+          navigation.navigate('File', {
           }); }}>
           <View style={styles.button}>
             <Heart  style ={styles.icon} fill={"#ff0000"} />
             <Text style={styles.text}> Saúde</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight style={styles.button} onPress={() => {
+        <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate('DataExport', {
           }); }}>
         <View style={styles.button}>
           <Clock style ={styles.icon} fill={"#ffffff"} />
           <Text style={styles.text}> Tempo Real</Text>
         </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
       </View>
     </View>
