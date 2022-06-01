@@ -19,6 +19,24 @@ import { styles } from './style';
 import { MapView } from '../../../src/components/MapView'
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
+import { Polyline } from 'react-native-maps';
+import Map from '../../components/Map';
+
+
+interface TrackpointProps {
+  Time: string;
+  Position: {
+    LatitudeDegrees: number;
+    LongitudeDegrees: number;
+  };
+  AltitudeMeters: number;
+  DistanceMeters: number;
+  HeartRateBpm: {
+    '@xsi:type': string;
+    Value: number;
+  };
+  SensorState: string;
+}
 
 
 type NavegacaoScreenProps = {
@@ -35,6 +53,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
   const [foregroundService, setForegroundService] = useState(false);
   const [useLocationManager, setUseLocationManager] = useState(false);
   const [location, setLocation] = useState<any>(null);
+  const trackpoint = useRef([{}]); // Trackpoints 
 
   const watchId: any = useRef(null);
 
@@ -163,6 +182,8 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       (position: any) => {
         setLocation(position);
         console.log(position);
+        handleTrackpoint(position);
+
       },
       (error) => {
         setLocation(null);
@@ -184,6 +205,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       },
     );
   };
+
 
 
   const startForegroundService = async () => {
@@ -223,7 +245,27 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       removeLocationUpdates();
     };
   }, [removeLocationUpdates]);
+ 
 
+    // Function to create new trackpoints 
+    function handleTrackpoint(position:any) {
+      const randomId = Math.floor(Math.random() * 10000); // Refactored after the Official Response
+      trackpoint.current = [...trackpoint.current, {
+        Time: randomId.toString(),
+        Position: {
+          LatitudeDegrees: position.coords?.latitude,
+          LongitudeDegrees: position.coords?.longitude,
+        },
+        AltitudeMeters: position.coords?.altitude,
+        DistanceMeters: position.coords?.distance,
+        HeartRateBpm: {
+          '@xsi:type': 'HeartRateInBeatsPerMinute_t',
+          Value: randomId
+        },
+        SensorState: 'Absent',
+      }]
+      console.log(`trackpoint: ${JSON.stringify(trackpoint)}`)
+    };
 
   return (
     <View style={styles.container}>
@@ -241,7 +283,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         </View>
 
       <View  style={styles.mapContainer}>
-        <MapView
+      <MapView
           coords={location?.coords || null}
         />
       </View>
