@@ -291,45 +291,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         style={styles.scrollContainer}
         contentContainerStyle={styles.contentContainer}
       >
-        <View>
-          <View style={styles.option}> 
-            <Text style={styles.titleText}>Enable High Accuracy</Text>
-            <Switch onValueChange={setHighAccuracy} value={highAccuracy} />
-          </View>
 
-          {Platform.OS === 'android' && (
-            <>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Show Location Dialog</Text>
-                <Switch
-                  onValueChange={setLocationDialog}
-                  value={locationDialog}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Force Location Request</Text>
-                <Switch
-                  onValueChange={setForceLocation}
-                  value={forceLocation}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Use Location Manager</Text>
-                <Switch
-                  onValueChange={setUseLocationManager}
-                  value={useLocationManager}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Enable Foreground Service</Text>
-                <Switch
-                  onValueChange={setForegroundService}
-                  value={foregroundService}
-                />
-              </View>
-            </>
-          )}
-        </View>
 
         <View style={styles.buttonContainer}>
           <Button title="Get Location" onPress={getLocation} />

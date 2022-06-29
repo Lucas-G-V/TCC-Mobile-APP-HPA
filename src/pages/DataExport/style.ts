@@ -150,6 +150,11 @@ export const styles = StyleSheet.create({
     width: 60,
     marginLeft: 20
   },
+  gear:{
+    height: 75,
+    width: 75,
+    marginLeft: 0
+  },
   play:{
     flexDirection:'column',
     alignItems: 'center',

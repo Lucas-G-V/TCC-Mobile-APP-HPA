@@ -20,12 +20,10 @@ import {LogBox} from 'react-native';
 
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
 import Heart from '../../assets/pulse.svg';
-import Clock from '../../assets/clock-svgrepo-com.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
-import Play from '../../assets/play-svgrepo-com.svg';
-
+import Gear from '../../assets/Gear.svg';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -53,10 +51,11 @@ type TerlemetriaScreenProps = {
   route: any;
 }
 
+  
 const App = ({ navigation, route }: TerlemetriaScreenProps) => {
-  let Glicose = 100;
-  let Duracao = 100;
-  let velocidade = 10;
+  let Glicose = '';
+  let Duracao = '';
+  let velocidade = '';
   let DistanciaPercorrida = 10;
   const [input, setInput] = useState('');
   let STORAGE_KEY = '@Heart';
@@ -91,10 +90,30 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
   //What device is connected?
   const [connectedDevice, setConnectedDevice] = useState<Device>();
 
-  const [message, setMessage] = useState('Nothing Yet');
+  const [message, setMessage] = useState('');
   const [datasaveHeart, setDataSaveHeart] = useState('');
   const [boxvalue, setBoxValue] = useState(false);
+
+
+
+  const [heartcolor, setheartcolor] = useState("#000000");
+  function colorHeart(isConnected: boolean){
+
+  if (isConnected==true) {
+    setheartcolor("#8F0000");
+  }
+  else{
+    setheartcolor("#000000");
+  }
+}
+
   
+  useEffect(() => {console.log(isConnected);colorHeart(isConnected);
+    },[isConnected] );
+ 
+
+
+
   // Scans availbale BLT Devices and then call connectDevice
   async function scanDevices() {
     PermissionsAndroid.request(
@@ -245,8 +264,9 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
     
 
   },[message]);
-  
-  
+
+
+
   return (
 
     
@@ -275,7 +295,7 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
                 <TouchableOpacity onPress={() => {
               navigation.navigate('File', {
               }); }}>
-                <Heart style={styles.icon} fill={"#000000"}></Heart>
+                <Heart style={styles.icon} fill={heartcolor}></Heart>
                 </TouchableOpacity>
                 
                   
@@ -294,10 +314,10 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
             </View>
             <View style={styles.section}>
               <View style={styles.component}>
-                <Clock style={styles.icon} fill={"#000000"}></Clock>
+                <Gear style={styles.gear} fill={"#000000"}></Gear>
                 <View style={styles.textview}>
                       <Text style={styles.titleh2}>{velocidade}</Text>
-                      <Text style={styles.titleh2}>min</Text>
+                      <Text style={styles.titleh2}>W</Text>
                 </View>
               </View>
               <View style={styles.component}>
@@ -330,14 +350,7 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
                     />
                   )}
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setDataSaveHeart(datasaveHeart+', '+message)}>
-                  <Text>Leitura</Text>
-
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => readData}>
-                  <Text>Teste</Text>
-
-                </TouchableOpacity>
+                
               </View>
               
       </View>

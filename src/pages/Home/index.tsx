@@ -41,10 +41,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
             <Text style={styles.text}> Navegacao</Text>
         </View>
       </TouchableOpacity>
-        <View style={styles.button}>
-          <Activity  style ={styles.icon} fill={"#00FFE2"} />
-          <Text style={styles.text}> Telemetria</Text>
-        </View>
+        
 
        
         <TouchableOpacity style={styles.button} onPress={() => {

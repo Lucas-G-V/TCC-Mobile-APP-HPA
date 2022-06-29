@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
   },
   body:{
-    height: '60%',
+    height: '40%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-evenly'
