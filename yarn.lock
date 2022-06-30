@@ -6582,6 +6582,11 @@ react-native-maps@^0.31.1:
     "@types/geojson" "^7946.0.7"
     deprecated-react-native-prop-types "^2.3.0"
 
+react-native-orientation-angle@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-orientation-angle/-/react-native-orientation-angle-1.0.1.tgz#a0728639dea5c5dc1df948af3cd3393270b862fa"
+  integrity sha512-q2gDHUPAyd9wF0kzG5UCNDRL4tOhBfyB0gubxCQeGeOzfAEpj+7dX0Ut8bmJpwS1HiuXTCAvMVJHZNvt2mMMXQ==
+
 react-native-safe-area-context@^4.2.5:
   version "4.2.5"
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.2.5.tgz"

@@ -184,5 +184,10 @@ export const styles = StyleSheet.create({
     width: 60,
     marginLeft: 0
   },
+  attitude:{
+    height: 65,
+    width: 65,
+    marginLeft: 0
+  }
 
   });

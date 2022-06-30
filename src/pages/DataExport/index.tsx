@@ -26,6 +26,7 @@ import HeartTitle from '../../assets/heart-disease.svg';
 import Gear from '../../assets/Gear.svg';
 import Bluetooth from '../../assets/bluetooth.svg';
 import Maps from '../../assets/maps.svg';
+import Attitude from '../../assets/attitude.svg';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -340,12 +341,21 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
                 </View>
               </View>
             </View>        
-                          
+
+            <View style={styles.section}>
             <TouchableOpacity onPress={() => {
               navigation.navigate('Navegacao', {
               }); }}>
-                <Maps style={styles.maps} fill={"#000000"}></Maps>
-                </TouchableOpacity>     
+              <Maps style={styles.maps} fill={"#000000"}></Maps>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => {
+              navigation.navigate('Axies', {
+              }); }}>
+              <Attitude style={styles.attitude} fill={"#000000"}></Attitude>
+              </TouchableOpacity>  
+            </View>
+
       </View>
     </View>
   );

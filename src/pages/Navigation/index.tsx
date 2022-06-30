@@ -6,6 +6,7 @@ import Home from '../DataExport';
 import SignIn from '../SignIn';
 import Navegacao from '../Navegacao/index';
 import File from '../Heart';
+import Axies from '../Axies';
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Navegacao" component={Navegacao} />
         <Stack.Screen name="File" component={File} />
+        <Stack.Screen name="Axies" component={Axies} />
       </Stack.Navigator>
     </NavigationContainer>
   );
