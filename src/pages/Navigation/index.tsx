@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Button, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../Home';
+import Home from '../DataExport';
 import SignIn from '../SignIn';
-import DataExport from '../DataExport';
-import Navegacao from '../Navegacao';
+import Navegacao from '../Navegacao/index';
 import File from '../Heart';
 
 
@@ -45,7 +44,6 @@ function App() {
         <Stack.Screen name="SignIn" component={SignIn}/>
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="DataExport" component={DataExport} />
         <Stack.Screen name="Navegacao" component={Navegacao} />
         <Stack.Screen name="File" component={File} />
       </Stack.Navigator>

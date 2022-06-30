@@ -15,7 +15,7 @@ import base64 from 'react-native-base64';
 import {BleManager, Device} from 'react-native-ble-plx';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {styles} from '../DataExport/style';
+import {styles} from './style';
 import {LogBox} from 'react-native';
 
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
@@ -24,6 +24,8 @@ import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
 import Gear from '../../assets/Gear.svg';
+import Bluetooth from '../../assets/bluetooth.svg';
+import Maps from '../../assets/maps.svg';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -46,13 +48,13 @@ function BoolToString(input: boolean) {
   }
 }
 
-type TerlemetriaScreenProps = {
+type HomeScreenProps= {
   navigation: any;
   route: any;
 }
 
   
-const App = ({ navigation, route }: TerlemetriaScreenProps) => {
+const Home = ({ navigation, route }: HomeScreenProps) => {
   let Glicose = '';
   let Duracao = '';
   let velocidade = '';
@@ -100,7 +102,7 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
   function colorHeart(isConnected: boolean){
 
   if (isConnected==true) {
-    setheartcolor("#8F0000");
+    setheartcolor("#38B6FF");
   }
   else{
     setheartcolor("#000000");
@@ -265,23 +267,33 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
 
   },[message]);
 
-
+  <Bluetooth style={styles.icon} fill={"#000000"}></Bluetooth>
 
   return (
-
-    
     <View style={styles.container}>
-      
-      
       <View style={styles.header}>
         <SafeAreaView style={styles.AndroidSafeArea} />
         <View style={styles.backgroundstatusbar}>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate('Home', {
-          }); }}>
-            <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
-          </TouchableOpacity>
-          <Text style={styles.title}>TELEMETRIA</Text>
+        <TouchableOpacity style={{width: 120}}>
+                  {!isConnected ? (
+                    <Bluetooth style={styles.bluetooth} fill={heartcolor} 
+                      title="Connect"
+                      onPress={() => {
+                        scanDevices();
+                      }}
+                      disabled={false}
+                    />
+                  ) : (
+                    <Bluetooth style={styles.bluetooth} fill={heartcolor}
+                      title="Disonnect"
+                      onPress={() => {
+                        disconnectDevice();
+                      }}
+                      disabled={false}
+                    />
+                  )}
+                </TouchableOpacity>
+          <Text style={styles.StatusBar}>HEALTH BOOK</Text>
           <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
       </View>
@@ -324,38 +336,19 @@ const App = ({ navigation, route }: TerlemetriaScreenProps) => {
                 <Speed style={styles.icon} fill={"#000000"}></Speed>
                 <View style={styles.textview}>
                   <Text style={styles.titleh2}>{velocidade}</Text>
-                  <Text style={styles.titleh2}>km/s</Text>
+                  <Text style={styles.titleh2}>m/s</Text>
                 </View>
               </View>
-            </View>
-              <View style={styles.play}>
-                  <Text style={styles.titleText}>ESP32-Bluetooth</Text>
-                <TouchableOpacity style={{width: 120}}>
-                  {!isConnected ? (
-                    <Button
-                      title="Connect"
-                      onPress={() => {
-                        scanDevices();
-                      }}
-                      disabled={false}
-                    />
-                  ) : (
-                    <Button
-                      title="Disonnect"
-                      onPress={() => {
-                        disconnectDevice();
-                        
-                      }}
-                      disabled={false}
-                    />
-                  )}
-                </TouchableOpacity>
-                
-              </View>
-              
+            </View>        
+                          
+            <TouchableOpacity onPress={() => {
+              navigation.navigate('Navegacao', {
+              }); }}>
+                <Maps style={styles.maps} fill={"#000000"}></Maps>
+                </TouchableOpacity>     
       </View>
     </View>
   );
 
 }
-export default App;
+export default Home;

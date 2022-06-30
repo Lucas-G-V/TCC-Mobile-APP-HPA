@@ -16,7 +16,7 @@ import VIForegroundService from '@voximplant/react-native-foreground-service';
 
 import appConfig from '../../../app.json';
 import { styles } from './style';
-import { MapView } from '../../../src/components/MapView'
+import { MapView } from '../../components/MapView'
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
 import { Polyline } from 'react-native-maps';

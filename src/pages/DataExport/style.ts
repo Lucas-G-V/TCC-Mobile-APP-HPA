@@ -165,4 +165,24 @@ export const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  bluetooth:{
+    height: 38,
+    width: 60,
+    marginLeft: 0
+  },
+  StatusBar:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: "bold", 
+    color: '#38B6FF',
+    fontSize: 30,
+    marginLeft: -50
+  },
+  maps:{
+    height: 60,
+    width: 60,
+    marginLeft: 0
+  },
+
   });
