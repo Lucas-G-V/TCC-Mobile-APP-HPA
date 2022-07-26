@@ -77,5 +77,36 @@ export const styles =StyleSheet.create({
     },
     test:{
       justifyContent: 'space-between',
+    },
+    roll:{
+      height: 200,
+      width: 200,
+      position:'relative',
+      
+    },
+    containerAirplane:{
+
+      padding: 5,
+      alignItems: 'center',
+      flex:1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    circleangle:{
+      position: 'absolute',
+      height: 220,
+      width: 220,
+    },
+    aaaa:{
+
+      position:'relative'
+    },
+    qqqt:{
+    marginBottom: 80,
+    marginTop: 10,
+    flex:1,
+
+    flexDirection:'column',
     }
+
   })

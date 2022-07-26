@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import {StyleSheet, View, Text, TouchableOpacity,  SafeAreaView,
-  TouchableHighlight, Animated, Image} from 'react-native'
+  TouchableHighlight } from 'react-native'
 import { orientationAngle } from 'react-native-orientation-angle'
 import {styles} from './style';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
 import AirplaneRoll from '../../assets/airplane.roll.svg';
 import AirplanePitch from '../../assets/airplane.pitch.svg';
-
 import Attitude2 from '../../assets/attitude2.svg';
-import Svg from 'react-native-svg';
-import CircleAngle from '../../assets/circleangle.svg';
-import Line from '../../assets/line.svg';
-
-import AirplaneYaw from '../../assets/airplane.yaw.svg';
-
-
-const intervalList = [10]
+const intervalList = [100, 500, 1000]
 
 type AxiesScreenProps = {
   navigation: any;
@@ -30,7 +22,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
 
   useEffect(() => {
     orientationAngle.getUpdateInterval((value) => {
-      setInterval(10)
+      setInterval(value)
     })
   }, [])
 
@@ -53,7 +45,6 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
       <Text style={styles.titleText}>{value}</Text>
     </View>
   )
-
   return (
     <View style={styles.container}>
 
@@ -74,47 +65,22 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
         </View>
 
         <View style={styles.body}>
-        <Text style={styles.titleText}>Pitch:{result.pitch.toFixed(2)}  Roll:{result.roll.toFixed(2)}  Yaw:{result.yaw.toFixed(2)}</Text>
-        <View>
-          
-        </View>
-        <View style={styles.containerAirplane}>
-           <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-           </CircleAngle>
+        <Text style={styles.titleText}>Update Interval: {interval}ms</Text>
 
-           <Animated.View style={[styles.aaaa, {transform: [{ rotate: result.roll + 'deg'}]}]}>
-            <View style={[styles.containerAirplane]}>
-              <AirplaneRoll style={[styles.circleangle]} fill={"#38B6FF"}></AirplaneRoll>
-              <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
-            </View>
-             </Animated.View>
-        </View>
+        {renderValue('pitch', result.pitch.toFixed(2))}
+        {renderValue('roll', result.roll.toFixed(2))}
+        {renderValue('yaw', result.yaw.toFixed(2))}
 
+        <AirplaneRoll style={[styles.roll, {transform: [{ rotate: result.roll + 'deg'}]}]} fill={"#38B6FF"}></AirplaneRoll>
+        <AirplanePitch style={[styles.roll, {transform: [{ rotate: result.pitch*-1 + 'deg'}]}]} fill={"#38B6FF"}></AirplanePitch>
 
-        <View style={styles.containerAirplane}>
-           <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-           </CircleAngle>
-
-           <Animated.View style={[styles.aaaa, {transform: [{ rotate: result.pitch + 'deg'}]}]}>
-            <View style={[styles.containerAirplane]}>
-              <AirplanePitch style={[styles.circleangle]} fill={"#38B6FF"}></AirplanePitch>
-              <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
-            </View>
-             </Animated.View>
-        </View>
-
-        <View style={styles.containerAirplane}>
-           <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-           </CircleAngle>
-
-           <Animated.View style={[styles.aaaa, {transform: [{ rotate: result.pitch + 'deg'}]}]}>
-            <View style={[styles.containerAirplane]}>
-              <AirplaneRoll style={[styles.circleangle]} fill={"#38B6FF"}></AirplaneRoll>
-              <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
-            </View>
-             </Animated.View>
-            
-        </View>
+        <View style={styles.buttonWrapper}>
+          {intervalList.map((value) => (
+            <TouchableOpacity key={value} style={styles.button} onPress={() => changeInterval(value)}>
+              <Text style={styles.titleText}>{value}ms</Text>
+            </TouchableOpacity>
+          ))}
+        </View> 
 
         <View style={styles.buttonWrapper}>
           <TouchableOpacity style={styles.button} onPress={subscribe}>
