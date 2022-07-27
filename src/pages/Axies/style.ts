@@ -4,6 +4,7 @@ export const styles =StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 5,
     alignItems: 'center',
+
   },
     box: {
       width: 100,
@@ -12,13 +13,12 @@ export const styles =StyleSheet.create({
     },
     buttonWrapper: {
       width: '90%',
-      marginTop: 100,
-      paddingHorizontal: 10,
+      paddingHorizontal: 4,
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
     button: {
-    paddingVertical: 8,
+    paddingVertical: 4,
     paddingHorizontal: 25,
     borderWidth: 1,
     borderRadius: 8,
@@ -29,8 +29,8 @@ export const styles =StyleSheet.create({
     },
     header:{
       marginBottom: 0,
-      paddingHorizontal: 25,
-
+      paddingHorizontal: 0,
+      width: '100%',
     },
     AndroidSafeArea: {
       paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
@@ -69,7 +69,7 @@ export const styles =StyleSheet.create({
       marginBottom:15,
     },
     body:{
-      height: '88%',
+      height: '89.5%',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: "space-around",
@@ -79,13 +79,12 @@ export const styles =StyleSheet.create({
       justifyContent: 'space-between',
     },
     roll:{
-      height: 200,
-      width: 200,
-      position:'relative',
+      height: 220,
+      width: 220,
+      position:'absolute',
       
     },
     containerAirplane:{
-
       padding: 5,
       alignItems: 'center',
       flex:1,
@@ -97,16 +96,25 @@ export const styles =StyleSheet.create({
       height: 220,
       width: 220,
     },
-    aaaa:{
-
+    anim:{
       position:'relative'
     },
     qqqt:{
     marginBottom: 80,
     marginTop: 10,
     flex:1,
-
     flexDirection:'column',
+    },
+    containerimage:{
+      padding: 5,
+      alignItems: 'center',
+      flex:1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    airplaneroll:{
+      position: 'absolute',
+      height: 200,
+      width: 210,
     }
-
   })
