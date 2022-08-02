@@ -75,6 +75,14 @@ export const styles =StyleSheet.create({
       justifyContent: "space-around",
       width: '100%',
     },
+    bodyland:{
+      height: '89.5%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: "space-around",
+      width: '100%',
+      borderWidth:1
+    },
     test:{
       justifyContent: 'space-between',
     },
