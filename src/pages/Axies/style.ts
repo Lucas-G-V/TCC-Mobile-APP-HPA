@@ -4,7 +4,8 @@ export const styles =StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 5,
     alignItems: 'center',
-
+    flexDirection: 'column',
+    flex:1
   },
     box: {
       width: 100,
@@ -12,10 +13,9 @@ export const styles =StyleSheet.create({
       marginBottom: 6,
     },
     buttonWrapper: {
-      width: '90%',
-      paddingHorizontal: 4,
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
+      width: '100%',
     },
     button: {
     paddingVertical: 4,
@@ -42,13 +42,13 @@ export const styles =StyleSheet.create({
       backgroundColor: '#ffffff',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: "space-evenly",
+      justifyContent: 'space-evenly',
     },
     arrow:{
       height: 40,
       width: 40,
     },
-    title:{
+    titleHandler:{
       textAlign: 'center',
       textDecorationColor: '#000',
       height: 'auto',
@@ -57,34 +57,34 @@ export const styles =StyleSheet.create({
       fontSize: 30,
       marginLeft: 30
     },
+    titleValue: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'black',
+      position: 'absolute',
+      paddingBottom: 150,
+    },
     icon:{
       height: 60,
       width: 60,
       marginLeft: 20
     },
-    titleText: {
+    titleButton: {
       fontSize: 15,
       fontWeight: 'bold',
       color: 'black',
-      marginBottom:15,
     },
     body:{
-      height: '89.5%',
       flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: "space-around",
       width: '100%',
+
+      flex:1
     },
     bodyland:{
-      height: '89.5%',
+      height: '60.5%',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: "space-around",
-      width: '100%',
-      borderWidth:1
-    },
-    test:{
-      justifyContent: 'space-between',
+
     },
     roll:{
       height: 220,
@@ -92,12 +92,23 @@ export const styles =StyleSheet.create({
       position:'absolute',
       
     },
-    containerAirplane:{
-      padding: 5,
+    containerRoll:{
       alignItems: 'center',
       flex:1,
-      flexDirection: 'column',
       justifyContent: 'center',
+
+    },
+    containerPitch:{
+      alignItems: 'center',
+      flex:1,
+      justifyContent: 'center',
+
+    },
+    containerYaw:{
+      alignItems: 'center',
+      flex:1,
+      justifyContent: 'center',
+
     },
     circleangle:{
       position: 'absolute',
@@ -107,17 +118,9 @@ export const styles =StyleSheet.create({
     anim:{
       position:'relative'
     },
-    qqqt:{
-    marginBottom: 80,
-    marginTop: 10,
-    flex:1,
-    flexDirection:'column',
-    },
     containerimage:{
       padding: 5,
       alignItems: 'center',
-      flex:1,
-      flexDirection: 'column',
       justifyContent: 'center',
     },
     airplaneroll:{

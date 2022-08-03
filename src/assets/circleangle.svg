@@ -5,148 +5,148 @@
   <path d="m396.75 552.36h6.5027" fill="none" stroke="#000"/>
   <path d="m400 555.61v-6.5027" fill="none" stroke="#000"/>
   <path transform="translate(-22 -1.9204e-6)" d="m104.9 552.36h36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(0 -1 1 0 -22 -1.9204e-6)" x="-552.302" y="158.23566" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(0 -1 1 0 -22 -1.9204e-6)" x="-552.302" y="158.23566" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-552.302" y="158.23566">0 °</tspan>
   </text>
   <path d="m87.72 497.3 36.243 6.3906" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.17365,-.98481,.98481,.17365,0,0)" x="-474.45114" y="226.07544" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-474.45114" y="226.07544">-10 °</tspan>
+   <tspan x="-474.45114" y="226.07544"></tspan>
   </text>
   <path d="m102.03 443.91 34.583 12.587" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.34202,-.93969,.93969,.34202,0,0)" x="-382.18246" y="301.03171" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-382.18246" y="301.03171">-20 °</tspan>
+   <tspan x="-382.18246" y="301.03171"></tspan>
   </text>
   <path d="m125.39 393.81 31.872 18.401" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(.5,-.86603,.86603,.5,0,0)" x="-278.29956" y="358.8269" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(.5,-.86603,.86603,.5,0,0)" x="-278.29956" y="358.8269" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-278.29956" y="358.8269">-30 °</tspan>
   </text>
   <path d="m157.09 348.54 28.192 23.656" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.64279,-.76604,.76604,.64279,0,0)" x="-165.9588" y="397.70499" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-165.9588" y="397.70499">-40 °</tspan>
+   <tspan x="-165.9588" y="397.70499"></tspan>
   </text>
   <path transform="translate(-22 -1.9204e-6)" d="m218.17 309.45 23.656 28.192" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.76604 -.64279 .64279 .76604 -22 -1.9204e-6)" x="-31.7207" y="430.62601" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-31.7207" y="430.62601">-50 °</tspan>
+   <tspan x="-31.7207" y="430.62601"></tspan>
   </text>
   <path d="m241.45 277.75 18.401 31.872" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(.86603,-.5,.5,.86603,0,0)" x="70.28915" y="414.59537" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(.86603,-.5,.5,.86603,0,0)" x="70.28915" y="414.59537" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="70.28915" y="414.59537">-60 °</tspan>
   </text>
   <path d="m291.55 254.39 12.587 34.583" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.93969,-.34202,.34202,.93969,0,0)" x="187.01816" y="392.09439" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="187.01816" y="392.09439">-70 °</tspan>
+   <tspan x="187.01816" y="392.09439"></tspan>
   </text>
   <path d="m344.94 240.08 6.3906 36.243" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(.98481,-.17365,.17365,.98481,0,0)" x="298.06653" y="349.66547" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="298.06653" y="349.66547">-80 °</tspan>
+   <tspan x="298.06653" y="349.66547"></tspan>
   </text>
   <path d="m400 235.26v36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text x="400.06015" y="288.59781" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text x="400.06015" y="288.59781" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="400.06015" y="288.59781">-90 °</tspan>
   </text>
   <path d="m455.06 240.08-6.3906 36.243" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(10)" x="489.8999" y="210.74693" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="489.8999" y="210.74693">-80 °</tspan>
+   <tspan x="489.8999" y="210.74693"></tspan>
   </text>
   <path d="m508.45 254.39-12.587 34.583" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(20)" x="564.85614" y="118.47826" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="564.85614" y="118.47826">-70 °</tspan>
+   <tspan x="564.85614" y="118.47826"></tspan>
   </text>
   <path d="m558.55 277.75-18.401 31.872" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="rotate(30)" x="622.65131" y="14.59535" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="rotate(30)" x="622.65131" y="14.59535" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="622.65131" y="14.59535">-60 °</tspan>
   </text>
   <path d="m603.83 309.45-23.656 28.192" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(40)" x="661.52942" y="-97.7454" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="661.52942" y="-97.7454">-50 °</tspan>
+   <tspan x="661.52942" y="-97.7454"></tspan>
   </text>
   <path d="m642.91 348.54-28.192 23.656" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(50)" x="680.30914" y="-215.13065" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="680.30914" y="-215.13065">-40 °</tspan>
+   <tspan x="680.30914" y="-215.13065"></tspan>
   </text>
   <path d="m674.61 393.81-31.872 18.401" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="rotate(60)" x="678.41974" y="-333.99347" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="rotate(60)" x="678.41974" y="-333.99347" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="678.41974" y="-333.99347">-30 °</tspan>
   </text>
   <path d="m697.97 443.91-34.583 12.587" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(70)" x="655.91882" y="-450.7225" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="655.91882" y="-450.7225">-20 °</tspan>
+   <tspan x="655.91882" y="-450.7225"></tspan>
   </text>
   <path d="m712.28 497.3-36.243 6.3906" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="rotate(80)" x="613.48993" y="-561.77087" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="613.48993" y="-561.77087">-10 °</tspan>
+   <tspan x="613.48993" y="-561.77087"></tspan>
   </text>
   <path d="m717.1 552.36h-36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="rotate(90)" x="552.42236" y="-663.76447" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="rotate(90)" x="552.42236" y="-663.76447" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="552.42236" y="-663.76447">0 °</tspan>
   </text>
   <path d="m712.28 607.43-36.243-6.3906" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.17365,.98481,-.98481,-.17365,0,0)" x="474.57141" y="-753.60419" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="474.57141" y="-753.60419">10 °</tspan>
+   <tspan x="474.57141" y="-753.60419"></tspan>
   </text>
   <path d="m697.97 660.82-34.583-12.587" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.34202,.93969,-.93969,-.34202,0,0)" x="382.3027" y="-828.56042" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="382.3027" y="-828.56042">20 °</tspan>
+   <tspan x="382.3027" y="-828.56042"></tspan>
   </text>
   <path d="m674.61 710.91-31.872-18.401" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(-.5,.86603,-.86603,-.5,0,0)" x="278.41974" y="-886.35565" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(-.5,.86603,-.86603,-.5,0,0)" x="278.41974" y="-886.35565" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="278.41974" y="-886.35565">30 °</tspan>
   </text>
   <path d="m642.91 756.19-28.192-23.656" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.64279,.76604,-.76604,-.64279,0,0)" x="166.07907" y="-925.2337" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="166.07907" y="-925.2337">40 °</tspan>
+   <tspan x="166.07907" y="-925.2337"></tspan>
   </text>
   <path d="m603.83 795.27-23.656-28.192" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.76604,.64279,-.64279,-.76604,0,0)" x="48.69386" y="-944.01349" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="48.69386" y="-944.01349">50 °</tspan>
+   <tspan x="48.69386" y="-944.01349"></tspan>
   </text>
   <path d="m558.55 826.98-18.401-31.872" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(-.86603,.5,-.5,-.86603,0,0)" x="-70.169" y="-942.12408" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(-.86603,.5,-.5,-.86603,0,0)" x="-70.169" y="-942.12408" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-70.169" y="-942.12408">60 °</tspan>
   </text>
   <path d="m508.45 850.34-12.587-34.583" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.93969,.34202,-.34202,-.93969,0,0)" x="-186.89795" y="-919.62317" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-186.89795" y="-919.62317">70 °</tspan>
+   <tspan x="-186.89795" y="-919.62317"></tspan>
   </text>
   <path d="m455.06 864.64-6.3906-36.243" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.98481,.17365,-.17365,-.98481,0,0)" x="-297.94626" y="-877.19427" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-297.94626" y="-877.19427">80 °</tspan>
+   <tspan x="-297.94626" y="-877.19427"></tspan>
   </text>
   <path d="m400 869.46v-36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="scale(-1)" x="-399.93982" y="-816.12659" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="scale(-1)" x="-399.93982" y="-816.12659" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-399.93982" y="-816.12659">90 °</tspan>
   </text>
   <path d="m344.94 864.64 6.3906-36.243" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.98481,-.17365,.17365,-.98481,0,0)" x="-489.77966" y="-738.2757" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-489.77966" y="-738.2757">80 °</tspan>
+   <tspan x="-489.77966" y="-738.2757"></tspan>
   </text>
   <path d="m291.55 850.34 12.587-34.583" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.93969,-.34202,.34202,-.93969,0,0)" x="-564.7359" y="-646.00702" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-564.7359" y="-646.00702">70 °</tspan>
+   <tspan x="-564.7359" y="-646.00702"></tspan>
   </text>
   <path d="m241.45 826.98 18.401-31.872" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(-.86603,-.5,.5,-.86603,0,0)" x="-622.53113" y="-542.12402" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(-.86603,-.5,.5,-.86603,0,0)" x="-622.53113" y="-542.12402" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-622.53113" y="-542.12402">60 °</tspan>
   </text>
   <path d="m196.17 795.27 23.656-28.192" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.76604,-.64279,.64279,-.76604,0,0)" x="-661.40918" y="-429.78333" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-661.40918" y="-429.78333">50 °</tspan>
+   <tspan x="-661.40918" y="-429.78333"></tspan>
   </text>
   <path d="m157.09 756.19 28.192-23.656" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.64279,-.76604,.76604,-.64279,0,0)" x="-680.1889" y="-312.39819" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-680.1889" y="-312.39819">40 °</tspan>
+   <tspan x="-680.1889" y="-312.39819"></tspan>
   </text>
   <path d="m125.39 710.91 31.872-18.401" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
-  <text transform="matrix(-.5,-.86603,.86603,-.5,0,0)" x="-678.29956" y="-193.53535" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
+  <text transform="matrix(-.5,-.86603,.86603,-.5,0,0)" x="-678.29956" y="-193.53535" font-family="Bitstream Vera Sans" font-size="30.6" text-anchor="middle">
    <tspan x="-678.29956" y="-193.53535">30 °</tspan>
   </text>
   <path d="m102.03 660.82 34.583-12.587" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.34202,-.93969,.93969,-.34202,0,0)" x="-655.79858" y="-76.8064" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-655.79858" y="-76.8064">20 °</tspan>
+   <tspan x="-655.79858" y="-76.8064"></tspan>
   </text>
   <path d="m87.72 607.43 36.243-6.3906" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <text transform="matrix(-.17365,-.98481,.98481,-.17365,0,0)" x="-613.36963" y="34.24192" font-family="Bitstream Vera Sans" font-size="17.6" text-anchor="middle">
-   <tspan x="-613.36963" y="34.24192">10 °</tspan>
+   <tspan x="-613.36963" y="34.24192"></tspan>
   </text>
   <path d="m82.903 552.36h36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
   <path d="m82.819 546.83 18.398 0.32115" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".63427"/>
