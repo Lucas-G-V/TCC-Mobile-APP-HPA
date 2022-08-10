@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Button, View, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../DataExport';
+import Home from '../Home';
 import SignIn from '../SignIn';
 import Navegacao from '../Navegacao/index';
 import File from '../Heart';
 import Axies from '../Axies';
-
+import Config from '../Config';
 
 
 type DetailsScreenProps = {
@@ -48,6 +48,7 @@ function App() {
         <Stack.Screen name="Navegacao" component={Navegacao} />
         <Stack.Screen name="File" component={File} />
         <Stack.Screen name="Axies" component={Axies} />
+        <Stack.Screen name="Config" component={Config} />
       </Stack.Navigator>
     </NavigationContainer>
   );

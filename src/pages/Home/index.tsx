@@ -7,7 +7,10 @@ import {
   Text,
   Image,
   SafeAreaView,
-  TouchableHighlight
+  TouchableHighlight,
+  Modal, 
+  Pressable,
+  Alert
 } from 'react-native';
 import { options } from './style';
 import base64 from 'react-native-base64';
@@ -27,6 +30,9 @@ import Gear from '../../assets/Gear.svg';
 import Bluetooth from '../../assets/bluetooth.svg';
 import Maps from '../../assets/maps.svg';
 import Attitude from '../../assets/attitude.svg';
+import Configurations from '../../pages/Config/index';
+
+import Config from '../../assets/config.icon.svg';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -97,7 +103,9 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   const [datasaveHeart, setDataSaveHeart] = useState('');
   const [boxvalue, setBoxValue] = useState(false);
 
-
+  //Modal code for visualization- Lucas
+  const [modalVisible, setModalVisible] = useState(false);
+  //
 
   const [heartcolor, setheartcolor] = useState("#000000");
   function colorHeart(isConnected: boolean){
@@ -354,6 +362,19 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
               }); }}>
               <Attitude style={styles.attitude} fill={"#000000"}></Attitude>
               </TouchableOpacity>  
+            </View>
+
+            
+            <View style={styles.footer}>
+
+              
+            <Pressable
+                style={[styles.button1, styles.buttonOpen]}
+                onPress={() => setModalVisible(true)}
+              >
+
+                <Config style={styles.icon} fill={"#737574"}></Config>
+            </Pressable>
             </View>
 
       </View>

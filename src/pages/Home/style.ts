@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     marginBottom: -30,
   },
   body:{
-    height: '80%',
+    flex:0.99,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: "space-around",
@@ -65,7 +65,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flex:1
     
   },
   textview:{
@@ -85,12 +86,11 @@ export const styles = StyleSheet.create({
   },
   AndroidSafeArea: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: '#ffffff'   
+    backgroundColor:'#FFFFFF',
   },
   backgroundstatusbar:{
     height: 100,
     marginTop: -30,
-    backgroundColor: '#ffffff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: "space-evenly",
@@ -188,6 +188,23 @@ export const styles = StyleSheet.create({
     height: 65,
     width: 65,
     marginLeft: 0
+  },  
+  footer:{
+    flex:0.85,
+    alignContent: 'flex-end',
+    justifyContent:'flex-end',
+
+    width: '100%',
+    flexDirection: 'column',
+
+  },
+  button1: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
   }
 
   });

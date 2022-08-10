@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {StyleSheet, View, Text, TouchableOpacity,  SafeAreaView,
-TouchableHighlight, Animated, Image} from 'react-native';
+TouchableHighlight, Animated, Image, ScrollView} from 'react-native';
 import {useOrientation} from '../useOrientation';
 import { orientationAngle } from 'react-native-orientation-angle'
 import {styles} from './style';
@@ -54,18 +54,21 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
     <View style={styles.container}>
 
       <View style={styles.header}>
+
+      
           <SafeAreaView style={styles.AndroidSafeArea} />
           <View style={styles.backgroundstatusbar}>
-          <TouchableHighlight onPress={() => {
+          <TouchableOpacity onPress={() => {
               navigation.navigate('Home', {
               }); }}>
               <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
-              </TouchableHighlight>
+              </TouchableOpacity>
               <Text style={styles.titleHandler}>AXIES</Text>
               <HeartTitle style={[styles.icon]} fill={"#38B6FF"}></HeartTitle>
           </View>
         </View>
-        
+
+
         <View style={orientation === 'PORTRAIT' ? styles.body :styles.bodyland}>
 
           <View style={styles.containerRoll}>
@@ -118,6 +121,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
               <Text style={styles.titleButton}>Unsubscribe</Text>
             </TouchableOpacity>
           </View>
+          
 
     </View>
   )

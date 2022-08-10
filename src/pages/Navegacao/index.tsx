@@ -10,7 +10,8 @@ import { Text,
   Switch, 
   Button,
   SafeAreaView,
-  TouchableHighlight} from 'react-native';
+  TouchableHighlight,
+  TouchableOpacity} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import VIForegroundService from '@voximplant/react-native-foreground-service';
 
@@ -272,11 +273,11 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         <View style={styles.header}>
         <SafeAreaView style={styles.AndroidSafeArea} />
         <View style={styles.backgroundstatusbar}>
-        <TouchableHighlight onPress={() => {
+        <TouchableOpacity onPress={() => {
             navigation.navigate('Home', {
             }); }}>
             <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.title}>NAVEGAÇÃO</Text>
             <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
