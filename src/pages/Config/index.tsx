@@ -18,9 +18,12 @@ import Line from '../../assets/line.svg';
 
 const intervalList = [10]
 
+interface IMyProps {
+  isVisible: boolean,
+}
+const [modalVisibleconfig, setModalVisibleconfig] = useState(false);
 
-
-export const Configurations = () =>{
+export const Configurations:React.FC<IMyProps> = (props: IMyProps) =>{
   const [interval, setInterval] = useState(0)
   const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
 
@@ -45,17 +48,16 @@ export const Configurations = () =>{
 
 
   const orientation = useOrientation();
-  const [modalVisible, setModalVisible] = useState(false);
+
 
 
   return (
     <Modal
     animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={props.isVisible && !modalVisibleconfig} 
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          setModalVisibleconfig(!modalVisibleconfig);
         }}>
     <View style={styles.container}>
 
@@ -70,7 +72,7 @@ export const Configurations = () =>{
           </View>
           <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setModalVisibleconfig(!modalVisibleconfig)}
             >
               <Text>Hide Modal</Text>
             </Pressable>
@@ -80,4 +82,4 @@ export const Configurations = () =>{
   </Modal>
   )
 }
-export default Configurations;
+export default {Configurations, modalVisibleconfig};

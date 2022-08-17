@@ -24,13 +24,13 @@ import {LogBox} from 'react-native';
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
 import Heart from '../../assets/pulse.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
-import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
+
 import HeartTitle from '../../assets/heart-disease.svg';
 import Gear from '../../assets/Gear.svg';
 import Bluetooth from '../../assets/bluetooth.svg';
 import Maps from '../../assets/maps.svg';
 import Attitude from '../../assets/attitude.svg';
-import Configurations from '../../pages/Config/index';
+import {Configurations, modalVisibleconfig} from '../../pages/Config/index';
 
 import Config from '../../assets/config.icon.svg';
 
@@ -364,15 +364,14 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
               </TouchableOpacity>  
             </View>
 
-            
+
+
+            <Configurations isVisible={modalVisibleconfig}></Configurations>
             <View style={styles.footer}>
 
-              
             <Pressable
-                style={[styles.button1, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}
+                onPress={() => {setModalVisible(true);}}
               >
-
                 <Config style={styles.icon} fill={"#737574"}></Config>
             </Pressable>
             </View>
