@@ -10,15 +10,34 @@ import { Text,
   Switch, 
   Button,
   SafeAreaView,
-  TouchableHighlight} from 'react-native';
+  TouchableHighlight,
+  TouchableOpacity} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import VIForegroundService from '@voximplant/react-native-foreground-service';
 
 import appConfig from '../../../app.json';
 import { styles } from './style';
-import { MapView } from '../../../src/components/MapView'
+import { MapView } from '../../components/MapView'
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
+import { Polyline } from 'react-native-maps';
+import Map from '../../components/Map';
+
+
+interface TrackpointProps {
+  Time: string;
+  Position: {
+    LatitudeDegrees: number;
+    LongitudeDegrees: number;
+  };
+  AltitudeMeters: number;
+  DistanceMeters: number;
+  HeartRateBpm: {
+    '@xsi:type': string;
+    Value: number;
+  };
+  SensorState: string;
+}
 
 
 type NavegacaoScreenProps = {
@@ -35,6 +54,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
   const [foregroundService, setForegroundService] = useState(false);
   const [useLocationManager, setUseLocationManager] = useState(false);
   const [location, setLocation] = useState<any>(null);
+  const trackpoint = useRef([{}]); // Trackpoints 
 
   const watchId: any = useRef(null);
 
@@ -163,6 +183,8 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       (position: any) => {
         setLocation(position);
         console.log(position);
+        handleTrackpoint(position);
+
       },
       (error) => {
         setLocation(null);
@@ -184,6 +206,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       },
     );
   };
+
 
 
   const startForegroundService = async () => {
@@ -223,25 +246,45 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
       removeLocationUpdates();
     };
   }, [removeLocationUpdates]);
+ 
 
+    // Function to create new trackpoints 
+    function handleTrackpoint(position:any) {
+      const randomId = Math.floor(Math.random() * 10000); // Refactored after the Official Response
+      trackpoint.current = [...trackpoint.current, {
+        Time: randomId.toString(),
+        Position: {
+          LatitudeDegrees: position.coords?.latitude,
+          LongitudeDegrees: position.coords?.longitude,
+        },
+        AltitudeMeters: position.coords?.altitude,
+        DistanceMeters: position.coords?.distance,
+        HeartRateBpm: {
+          '@xsi:type': 'HeartRateInBeatsPerMinute_t',
+          Value: randomId
+        },
+        SensorState: 'Absent',
+      }]
+      console.log(`trackpoint: ${JSON.stringify(trackpoint)}`)
+    };
 
   return (
     <View style={styles.container}>
         <View style={styles.header}>
         <SafeAreaView style={styles.AndroidSafeArea} />
         <View style={styles.backgroundstatusbar}>
-        <TouchableHighlight onPress={() => {
+        <TouchableOpacity onPress={() => {
             navigation.navigate('Home', {
             }); }}>
             <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.title}>NAVEGAÇÃO</Text>
             <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
         </View>
 
       <View  style={styles.mapContainer}>
-        <MapView
+      <MapView
           coords={location?.coords || null}
         />
       </View>
@@ -249,45 +292,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         style={styles.scrollContainer}
         contentContainerStyle={styles.contentContainer}
       >
-        <View>
-          <View style={styles.option}> 
-            <Text style={styles.titleText}>Enable High Accuracy</Text>
-            <Switch onValueChange={setHighAccuracy} value={highAccuracy} />
-          </View>
 
-          {Platform.OS === 'android' && (
-            <>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Show Location Dialog</Text>
-                <Switch
-                  onValueChange={setLocationDialog}
-                  value={locationDialog}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Force Location Request</Text>
-                <Switch
-                  onValueChange={setForceLocation}
-                  value={forceLocation}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Use Location Manager</Text>
-                <Switch
-                  onValueChange={setUseLocationManager}
-                  value={useLocationManager}
-                />
-              </View>
-              <View style={styles.option}>
-                <Text style={styles.titleText}>Enable Foreground Service</Text>
-                <Switch
-                  onValueChange={setForegroundService}
-                  value={foregroundService}
-                />
-              </View>
-            </>
-          )}
-        </View>
 
         <View style={styles.buttonContainer}>
           <Button title="Get Location" onPress={getLocation} />
