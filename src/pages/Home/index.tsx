@@ -30,7 +30,8 @@ import Gear from '../../assets/Gear.svg';
 import Bluetooth from '../../assets/bluetooth.svg';
 import Maps from '../../assets/maps.svg';
 import Attitude from '../../assets/attitude.svg';
-import {Configurations, modalVisibleconfig} from '../../pages/Config/index';
+import Configurations from '../../pages/Config/index';
+import Save from '../../assets/save.icon.svg';
 
 import Config from '../../assets/config.icon.svg';
 
@@ -270,7 +271,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     if(message != 'Nothing Yet'){
       setDataSaveHeart(datasaveHeart+message+', ');
       console.log(datasaveHeart);
-      
+    
     }
     
 
@@ -364,11 +365,35 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
               </TouchableOpacity>  
             </View>
 
+            <View style={styles.centeredView}>
+              <Modal
+              animationType="fade"
+                  transparent={true}
+                  visible={modalVisible} 
+                  onRequestClose={() => {
+                  setModalVisible(!modalVisible);}}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+
+                    <Configurations></Configurations>
+                    <Pressable
+                      style={[styles.button]}
+                      onPress={() => setModalVisible(!modalVisible)}
+                      >
+                      <Save style={styles.save} fill={"#000000"}>
+        
+                      </Save>
+                    </Pressable>
+
+                  </View>
+                </View>
 
 
-            <Configurations isVisible={modalVisibleconfig}></Configurations>
+              </Modal>
+            </View>
+
             <View style={styles.footer}>
-
             <Pressable
                 onPress={() => {setModalVisible(true);}}
               >

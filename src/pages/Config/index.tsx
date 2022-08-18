@@ -4,26 +4,12 @@ TouchableHighlight, Animated, Image, ScrollView, Modal, Alert, Pressable} from '
 import {useOrientation} from '../useOrientation';
 import { orientationAngle } from 'react-native-orientation-angle'
 import {styles} from './style';
-import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
-import HeartTitle from '../../assets/heart-disease.svg';
-import AirplaneRoll from '../../assets/airplane.roll.svg';
-import AirplanePitch from '../../assets/airplane.pitch.svg';
-import AirplaneYaw from '../../assets/airplane.yaw.svg';
-import Attitude2 from '../../assets/attitude2.svg';
-import Svg from 'react-native-svg';
-import CircleAngle from '../../assets/circleangle.svg';
-import Line from '../../assets/line.svg';
 
 
+const intervalList = [100, 500, 1000]
 
-const intervalList = [10]
+export const Configurations = () =>{
 
-interface IMyProps {
-  isVisible: boolean,
-}
-const [modalVisibleconfig, setModalVisibleconfig] = useState(false);
-
-export const Configurations:React.FC<IMyProps> = (props: IMyProps) =>{
   const [interval, setInterval] = useState(0)
   const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
 
@@ -49,17 +35,16 @@ export const Configurations:React.FC<IMyProps> = (props: IMyProps) =>{
 
   const orientation = useOrientation();
 
-
+  const renderValue = (label: string, value: string) => (
+    <View style={styles.box}>
+      <Text style={styles.titleText}>{label}:</Text>
+      <Text style={styles.titleText}>{value}</Text>
+    </View>
+  )
 
   return (
-    <Modal
-    animationType="slide"
-        transparent={true}
-        visible={props.isVisible && !modalVisibleconfig} 
-        onRequestClose={() => {
-          setModalVisibleconfig(!modalVisibleconfig);
-        }}>
-    <View style={styles.container}>
+
+    <View>
 
           <View style={styles.buttonWrapper}>
             <TouchableOpacity style={styles.button} onPress={subscribe}>
@@ -70,16 +55,23 @@ export const Configurations:React.FC<IMyProps> = (props: IMyProps) =>{
               <Text style={styles.titleButton}>Unsubscribe</Text>
             </TouchableOpacity>
           </View>
-          <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisibleconfig(!modalVisibleconfig)}
-            >
-              <Text>Hide Modal</Text>
-            </Pressable>
-          
+
+        <Text style={styles.titleText}>Update Interval: {interval}ms</Text>
+            {renderValue('pitch', result.pitch.toFixed(2))}
+            {renderValue('roll', result.roll.toFixed(2))}
+            {renderValue('yaw', result.yaw.toFixed(2))}
+
+        <View style={styles.buttonWrapper}>
+          {intervalList.map((value) => (
+            <TouchableOpacity key={value} style={styles.button} onPress={() => changeInterval(value)}>
+              <Text style={styles.titleText}>{value}ms</Text>
+            </TouchableOpacity>
+          ))}
+        </View> 
 
     </View>
-  </Modal>
+    
+    
   )
 }
-export default {Configurations, modalVisibleconfig};
+export default Configurations;

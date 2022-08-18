@@ -138,6 +138,12 @@ export const styles =StyleSheet.create({
     },
     buttonClose: {
       backgroundColor: "#2196F3",
+    },
+    titleText: {
+      fontSize: 15,
+      fontWeight: 'bold',
+      color: 'black',
+      marginBottom:15,
     }
 
   })
