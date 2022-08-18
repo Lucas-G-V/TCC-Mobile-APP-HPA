@@ -142,8 +142,7 @@ const File = ({ navigation, route }: FileScreenProps) => {
             yAxisSuffix={' bpm'}
             />
         </View>
-
-
+        
         <TouchableOpacity onPress={Atualiza}>
           <Text style={styles.titleText}>Exportar</Text>
         </TouchableOpacity>
