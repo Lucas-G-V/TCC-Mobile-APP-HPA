@@ -1,18 +1,12 @@
 import React,{ useEffect, useState } from 'react';
 import {
   TouchableOpacity,
-  Button,
   PermissionsAndroid,
   View,
   Text,
-  Image,
   SafeAreaView,
-  TouchableHighlight,
   Modal, 
-  Pressable,
-  Alert
-} from 'react-native';
-import { options } from './style';
+  Pressable} from 'react-native';
 import base64 from 'react-native-base64';
 //import CheckBox from '@react-native-community/checkbox';
 import {BleManager, Device} from 'react-native-ble-plx';
@@ -80,9 +74,6 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   const readData = async () => {
     try {
       const value = await AsyncStorage.getItem(STORAGE_KEY);
-      console.log("teste");
-      console.log(value);
-  
       if (value !== null) {
         setInput(value);
       }

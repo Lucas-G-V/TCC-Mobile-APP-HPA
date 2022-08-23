@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {StyleSheet, View, Text, TouchableOpacity,  SafeAreaView,
-TouchableHighlight, Animated, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity,  SafeAreaView,
+Animated} from 'react-native';
 import {useOrientation} from '../useOrientation';
 import { orientationAngle } from 'react-native-orientation-angle'
 import {styles} from './style';
@@ -9,10 +9,11 @@ import HeartTitle from '../../assets/heart-disease.svg';
 import AirplaneRoll from '../../assets/airplane.roll.svg';
 import AirplanePitch from '../../assets/airplane.pitch.svg';
 import AirplaneYaw from '../../assets/airplane.yaw.svg';
-import Attitude2 from '../../assets/attitude2.svg';
-import Svg from 'react-native-svg';
+
 import CircleAngle from '../../assets/circleangle.svg';
 import Line from '../../assets/line.svg';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -33,20 +34,36 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
       setInterval(10)
     })
   }, [])
+  
 
-  const changeInterval = (value: number) => {
-    orientationAngle.setUpdateInterval(value)
-    setInterval(value)
-  }
+  
+  var [AxiesOrigin,SetAxiesOrigin]=useState({pitch: 0, roll: 0, yaw: 0 });
+  let STORAGE_KEY = '@configAxies';
+  var test= {pitch: 0, roll: 0, yaw: 0 };
+  const readData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(STORAGE_KEY);
+      console.log('Porfavor DEUS estou com sono')
+      
+      if (value !== null) {
+       test=(JSON.parse(value))
+       SetAxiesOrigin({pitch: test.pitch, roll: test.roll, yaw: test.yaw})
+       console.log(AxiesOrigin.pitch)
 
-  const subscribe = () => {
-    orientationAngle.subscribe(setResult)
-  }
+      }
+    } catch (e) {
+      
+    }
+  };
+  
 
-  const unsubscribe = () => {
+  useState(() => {
     orientationAngle.unsubscribe()
-  }
-
+    orientationAngle.subscribe(setResult)
+    readData()
+    
+  })
+  
 
   const orientation = useOrientation();
 
@@ -74,8 +91,8 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
           <View style={styles.containerRoll}>
             <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
             </CircleAngle>
-            <Text style={styles.titleValue}>{result.roll.toFixed(1)+'°'}</Text>
-            <Animated.View style={[styles.anim, {transform: [{ rotate: result.roll + 'deg'}]}]}>
+            <Text style={styles.titleValue}>{(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>
+            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.roll-AxiesOrigin.roll) + 'deg'}]}]}>
               <View style={[styles.containerimage]}>              
               <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
               <AirplaneRoll style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplaneRoll>
@@ -87,8 +104,8 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
           <View style={styles.containerPitch}>
             <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
             </CircleAngle>
-            <Text style={styles.titleValue}>{result.pitch.toFixed(1)+'°'}</Text>
-            <Animated.View style={[styles.anim, {transform: [{ rotate: result.pitch + 'deg'}]}]}>
+            <Text style={styles.titleValue}>{(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
+            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.pitch-AxiesOrigin.pitch) + 'deg'}]}]}>
               <View style={[styles.containerimage]}>
               <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
               <AirplanePitch style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplanePitch>
@@ -110,18 +127,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
               </Animated.View>
               
           </View>
-      </View>
-
-      <View style={styles.buttonWrapper}>
-            <TouchableOpacity style={styles.button} onPress={subscribe}>
-              <Text style={styles.titleButton}>Subscribe</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={unsubscribe}>
-              <Text style={styles.titleButton}>Unsubscribe</Text>
-            </TouchableOpacity>
-          </View>
-          
+      </View>          
 
     </View>
   )
