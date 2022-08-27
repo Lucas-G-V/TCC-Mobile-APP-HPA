@@ -26,6 +26,7 @@ import Maps from '../../assets/maps.svg';
 import Attitude from '../../assets/attitude.svg';
 import Configurations from '../../pages/Config/index';
 import Save from '../../assets/save.icon.svg';
+import Closeicon from '../../assets/close.icon.svg'
 
 import Config from '../../assets/config.icon.svg';
 
@@ -372,9 +373,9 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
                       style={[styles.button]}
                       onPress={() => setModalVisible(!modalVisible)}
                       >
-                      <Save style={styles.save} fill={"#000000"}>
+                      <Closeicon style={styles.save} fill={"#000000"}>
         
-                      </Save>
+                      </Closeicon>
                     </Pressable>
 
                   </View>

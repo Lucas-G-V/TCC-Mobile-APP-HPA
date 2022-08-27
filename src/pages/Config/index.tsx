@@ -61,6 +61,9 @@ let exportAxies: any;
           <TouchableOpacity style={styles.button} onPress={() => {saveAxies();}}>
               <Text style={styles.renderText}>Salvar Posição</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => {saveAxies();}}>
+              <Text style={styles.renderText}>Salvar Origem</Text>
+          </TouchableOpacity>
     </View>
   )
 }
