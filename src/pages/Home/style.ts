@@ -217,12 +217,14 @@ export const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 20,
+    flex:0.35,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
+    flexDirection: "column",
+    justifyContent: 'space-between',
     shadowOffset: {
       width: 0,
       height: 2

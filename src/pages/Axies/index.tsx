@@ -12,10 +12,16 @@ import AirplaneYaw from '../../assets/airplane.yaw.svg';
 
 import CircleAngle from '../../assets/circleangle.svg';
 import Line from '../../assets/line.svg';
+import Circle2 from '../../assets/circulo.2.svg';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import HeadingMechanics from '../../assets/heading_mechanics.svg'; 
+import HeadingYaw from '../../assets/heading_yaw.svg'; 
 
-
+import HorizonBack  from '../../assets/horizon_back.svg'; 
+import HorizonBall from '../../assets/horizon_ball.svg'; 
+import HorizonCircle from '../../assets/horizon_circle.svg'; 
+import HorizonMechanics from '../../assets/horizon_mechanics.svg'; 
 
 const intervalList = [10]
 
@@ -89,43 +95,47 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
         <View style={orientation === 'PORTRAIT' ? styles.body :styles.bodyland}>
 
           <View style={styles.containerRoll}>
-            <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-            </CircleAngle>
-            <Text style={styles.titleValue}>{(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>
+
             <Animated.View style={[styles.anim, {transform: [{ rotate: (result.roll-AxiesOrigin.roll) + 'deg'}]}]}>
               <View style={[styles.containerimage]}>              
-              <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
+              <Circle2 style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Circle2>
               <AirplaneRoll style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplaneRoll>
               </View>
               </Animated.View>
+            <Text style={styles.titleValue}>{(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>
+            <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
+            </CircleAngle>
           </View>
 
 
           <View style={styles.containerPitch}>
-            <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-            </CircleAngle>
+            <Circle2 style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}>
+            </Circle2>
             <Text style={styles.titleValue}>{(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
-            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.pitch-AxiesOrigin.pitch) + 'deg'}]}]}>
+            <Animated.View style={[styles.anim, {transform: [{ translateY: ((result.pitch-AxiesOrigin.pitch)) }]}]}>
               <View style={[styles.containerimage]}>
-              <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
-              <AirplanePitch style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplanePitch>
 
+              <HorizonBall style={[styles.airplaneroll]} fill={"#38B6FF"}></HorizonBall>
               </View>
               </Animated.View>
+              <HorizonMechanics style={[styles.airplaneroll]} > 
+              </HorizonMechanics>
+              <HorizonCircle style={[styles.airplaneroll]} ></HorizonCircle>
           </View>
 
           <View style={styles.containerYaw}>
-            <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
-            </CircleAngle>
-            <Text style={styles.titleValue}>{result.yaw.toFixed(1)+'°'}</Text>
-            <Animated.View style={[styles.anim, {transform: [{ rotate: (90-result.yaw) + 'deg'}]}]}>
+          
+
+
+            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.yaw) + 'deg'}]}]}>
               <View style={[styles.containerimage]}>
-                <Line style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Line>
-                <AirplaneYaw style={[styles.airplaneroll]} fill={"#000"}></AirplaneYaw>
+                <HeadingYaw style={[styles.circleangle]} fill={"#38B6FF"}> 
+                </HeadingYaw>
                 
               </View>
               </Animated.View>
-              
+              <HeadingMechanics style={[styles.airplaneroll]} fill={"#000"}></HeadingMechanics>
+
           </View>
       </View>          
 

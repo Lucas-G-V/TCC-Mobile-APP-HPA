@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 635.09204 635.09204" xmlns="http://www.w3.org/2000/svg">
  <g transform="translate(-82.454 -234.82)">
-  <path transform="translate(-8.8648 -10.705)" d="m422.44 563.07a13.575 13.575 0 1 1 -27.151 0 13.575 13.575 0 1 1 27.151 0z" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
+  <path transform="translate(-8.8648 -10.705)" d="m422.44 563.07a13.575 13.575 0 1 1 -27.151 0 13.575 13.575 0 1 1 27.151 0z" fill="none" fill-rule="evenodd" stroke="none" stroke-linecap="round" stroke-width=".897"/>
   <path d="m396.75 552.36h6.5027" fill="none" stroke="#000"/>
   <path d="m400 555.61v-6.5027" fill="none" stroke="#000"/>
   <path transform="translate(-22 -1.9204e-6)" d="m104.9 552.36h36.802" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".897"/>
