@@ -95,6 +95,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   const [message, setMessage] = useState('');
   const [datasaveHeart, setDataSaveHeart] = useState('');
   const [boxvalue, setBoxValue] = useState(false);
+  const [speedvalue, setSpeedValue]=useState('');
 
   //Modal code for visualization- Lucas
   const [modalVisible, setModalVisible] = useState(false);
@@ -177,6 +178,8 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
       base64.encode(value.toString()),
     ).then(characteristic => {
       console.log('Boxvalue changed to :', base64.decode(characteristic.value));
+      //setSpeedValue(characteristic.value);//Ygor e Lucas
+
     });
   }
   //Connect the device and start monitoring characteristics
@@ -210,6 +213,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
           .readCharacteristicForService(SERVICE_UUID, BOX_UUID)
           .then(valenc => {
             setBoxValue(StringToBool(base64.decode(valenc?.value)));
+            
           });
         //monitor values and tell what to do when receiving an update
         //Message
@@ -222,10 +226,10 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
               console.log(
                 'Message update received: ',
                 base64.decode(characteristic?.value),
-
+                
                 
               )
-
+              
 
             }
             
@@ -241,6 +245,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
           (error, characteristic) => {
             if (characteristic?.value != null) {
               setBoxValue(StringToBool(base64.decode(characteristic?.value)));
+              setSpeedValue(base64.decode(characteristic?.value));//Ygor e Lucas
               console.log(
                 'Box Value update received: ',
                 base64.decode(characteristic?.value),
@@ -262,7 +267,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   useEffect(()=>{
     if(message != 'Nothing Yet'){
       setDataSaveHeart(datasaveHeart+message+', ');
-      console.log(datasaveHeart);
+
     
     }
     
@@ -337,7 +342,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
               <View style={styles.component}>
                 <Speed style={styles.icon} fill={"#000000"}></Speed>
                 <View style={styles.textview}>
-                  <Text style={styles.titleh2}>{velocidade}</Text>
+                  <Text style={styles.titleh2}>{speedvalue}</Text>
                   <Text style={styles.titleh2}>m/s</Text>
                 </View>
               </View>
