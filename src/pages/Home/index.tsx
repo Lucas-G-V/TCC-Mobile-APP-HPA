@@ -8,26 +8,22 @@ import {
   Modal, 
   Pressable} from 'react-native';
 import base64 from 'react-native-base64';
-//import CheckBox from '@react-native-community/checkbox';
 import {BleManager, Device} from 'react-native-ble-plx';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import {styles} from './style';
 import {LogBox} from 'react-native';
+import {useOrientation} from '../useOrientation';
 
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
 import Heart from '../../assets/pulse.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
-
 import HeartTitle from '../../assets/heart-disease.svg';
 import Gear from '../../assets/Gear.svg';
 import Bluetooth from '../../assets/bluetooth.svg';
 import Maps from '../../assets/maps.svg';
 import Attitude from '../../assets/attitude.svg';
 import Configurations from '../../pages/Config/index';
-import Save from '../../assets/save.icon.svg';
 import Closeicon from '../../assets/close.icon.svg'
-
 import Config from '../../assets/config.icon.svg';
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
@@ -274,7 +270,9 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
 
   },[message]);
 
-  <Bluetooth style={styles.icon} fill={"#000000"}></Bluetooth>
+
+  const orientation = useOrientation();
+
 
   return (
     <View style={styles.container}>
