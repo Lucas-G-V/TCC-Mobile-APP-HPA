@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="410.667px" height="410.666px" viewBox="0 0 400.667 400.666" enable-background="new 0 0 400.667 400.666"
+	 width="410.666px" height="410.666px" viewBox="0 0 400 400" enable-background="new 0 0 400 400"
 	 xml:space="preserve">
 <filter  filterUnits="objectBoundingBox" id="AI_Shadow_1">
 	<feGaussianBlur  stdDeviation="5" result="blur" in="SourceAlpha"></feGaussianBlur>
@@ -15,11 +15,10 @@
 	<g filter="url(#AI_Shadow_1)">
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="200.333" y1="276.3325" x2="200.333" y2="124.3325">
 
-			<stop  offset="0.4999" style="stop-color:#80471C;opacity:0.5"/>
-			<stop  offset="0.5001" style="stop-color:#38B6FF"/>
+
 
 		</linearGradient>
-		<path fill="url(#SVGID_1_)" d="M301.333,200.333c0,41.936-33.963,75.938-75.885,76c-0.038,0-50.076,0-50.114,0
+		<path d="M301.333,200.333c0,41.936-33.963,75.938-75.885,76c-0.038,0-50.076,0-50.114,0
 			c-41.974,0-76-34.026-76-76s34.026-76,76-76c0.027,0,50.056,0,50.083,0C267.352,124.377,301.333,158.387,301.333,200.333z"/>
 	</g>
 	<line fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" x1="99.667" y1="200.457" x2="301.667" y2="200.457"/>

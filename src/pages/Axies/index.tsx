@@ -23,6 +23,10 @@ import HorizonBall from '../../assets/horizon_ball.svg';
 import HorizonCircle from '../../assets/horizon_circle.svg'; 
 import HorizonMechanics from '../../assets/horizon_mechanics.svg'; 
 
+import Circle from '../../assets/circle.svg'; 
+import Rectangle from '../../assets/rectangle.svg'; 
+import Rectangle2 from '../../assets/rectangle2.svg';
+
 const intervalList = [10]
 
 type AxiesScreenProps = {
@@ -91,7 +95,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
           </View>
         </View>
 
-
+              
         <View style={orientation === 'PORTRAIT' ? styles.body :styles.bodyland}>
 
           <View style={styles.containerRoll}>
@@ -109,15 +113,17 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
 
 
           <View style={styles.containerPitch}>
-            <Circle2 style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}>
-            </Circle2>
-            <Text style={styles.titleValue}>{(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
-            <Animated.View style={[styles.anim, {transform: [{ translateY: ((result.pitch-AxiesOrigin.pitch)) }]}]}>
+            <Circle style={[styles.roll ]} fill={"#38B6FF"}>
+            </Circle>
+            <Text style={styles.titleValue}>{(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>              
+            <View style={[styles.logoCircle]}>
+            <Animated.View style={[styles.anim, {transform: [{ translateY: ((result.pitch-AxiesOrigin.pitch)*2.78) }]}]}>
               <View style={[styles.containerimage]}>
-
-              <HorizonBall style={[styles.airplaneroll]} fill={"#38B6FF"}></HorizonBall>
+              <Rectangle2 style={[styles.roll, {transform: [{ rotate: '-90deg'}]}]} fill={"#80471C"}></Rectangle2>
+              <HorizonBall style={[styles.airplaneroll]} ></HorizonBall>
               </View>
               </Animated.View>
+              </View>
               <HorizonMechanics style={[styles.airplaneroll]} > 
               </HorizonMechanics>
               <HorizonCircle style={[styles.airplaneroll]} ></HorizonCircle>

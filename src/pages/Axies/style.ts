@@ -91,6 +91,7 @@ export const styles =StyleSheet.create({
       width: 220,
       position:'absolute',
       
+      
     },
     containerRoll:{
       alignItems: 'center',
@@ -99,6 +100,7 @@ export const styles =StyleSheet.create({
 
     },
     containerPitch:{
+      
       alignItems: 'center',
       flex:1,
       justifyContent: 'center',
@@ -127,5 +129,14 @@ export const styles =StyleSheet.create({
       position: 'absolute',
       height: 200,
       width: 210,
-    }
+    },
+    logoCircle: {
+      backgroundColor: 'none',
+      height: 220,
+      width: 220,
+      borderRadius: 220,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth:5,
+      overflow: 'hidden',}
   })
