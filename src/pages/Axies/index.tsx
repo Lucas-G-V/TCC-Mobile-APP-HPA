@@ -3,38 +3,28 @@ import {View, Text, TouchableOpacity,  SafeAreaView,
 Animated} from 'react-native';
 import {useOrientation} from '../useOrientation';
 import { orientationAngle } from 'react-native-orientation-angle'
+import AsyncStorage from '@react-native-community/async-storage';
 import {styles} from './style';
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
 import AirplaneRoll from '../../assets/airplane.roll.svg';
-import AirplanePitch from '../../assets/airplane.pitch.svg';
-import AirplaneYaw from '../../assets/airplane.yaw.svg';
-
 import CircleAngle from '../../assets/circleangle.svg';
-import Line from '../../assets/line.svg';
 import Circle2 from '../../assets/circulo.2.svg';
-
-import AsyncStorage from '@react-native-community/async-storage';
 import HeadingMechanics from '../../assets/heading_mechanics.svg'; 
 import HeadingYaw from '../../assets/heading_yaw.svg'; 
-
-import HorizonBack  from '../../assets/horizon_back.svg'; 
 import HorizonBall from '../../assets/horizon_ball.svg'; 
 import HorizonCircle from '../../assets/horizon_circle.svg'; 
 import HorizonMechanics from '../../assets/horizon_mechanics.svg'; 
-
 import Circle from '../../assets/circle.svg'; 
-import Rectangle from '../../assets/rectangle.svg'; 
 import Rectangle2 from '../../assets/rectangle2.svg';
 
-const intervalList = [10]
 
 type AxiesScreenProps = {
   navigation: any;
   route: any;
 }
 
-//export const Axies = ({ navigation, route }: AxiesScreenProps) => 
+
 export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
   const [interval, setInterval] = useState(0)
   const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
@@ -53,7 +43,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
   const readData = async () => {
     try {
       const value = await AsyncStorage.getItem(STORAGE_KEY);
-      console.log('Porfavor DEUS estou com sono')
+      console.log('Porfavor DEUS, estou com sono')
       
       if (value !== null) {
        test=(JSON.parse(value))
@@ -76,6 +66,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
   
 
   const orientation = useOrientation();
+
 
   return (
     <View style={styles.container}>
@@ -100,13 +91,13 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
 
           <View style={styles.containerRoll}>
 
-            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.roll-AxiesOrigin.roll) + 'deg'}]}]}>
+            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", transform: [{ rotate: (result.roll-AxiesOrigin.roll) + 'deg'}]} :{position: "relative", transform: [{ rotate: (result.pitch-AxiesOrigin.pitch) + 'deg'}]}}>
               <View style={[styles.containerimage]}>              
               <Circle2 style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Circle2>
               <AirplaneRoll style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplaneRoll>
               </View>
               </Animated.View>
-            <Text style={styles.titleValue}>{(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>
+              <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (result.roll-AxiesOrigin.roll).toFixed(1)+'°' :(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
             <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
             </CircleAngle>
           </View>
@@ -115,9 +106,11 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
           <View style={styles.containerPitch}>
             <Circle style={[styles.roll ]} fill={"#38B6FF"}>
             </Circle>
-            <Text style={styles.titleValue}>{(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>              
+            <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (result.pitch-AxiesOrigin.pitch).toFixed(1)+'°' :(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>              
             <View style={[styles.logoCircle]}>
-            <Animated.View style={[styles.anim, {transform: [{ translateY: ((result.pitch-AxiesOrigin.pitch)*2.78) }]}]}>
+
+            
+            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", translateY: ((result.pitch-AxiesOrigin.pitch)*2.78)} :{position: "relative", translateY: ((AxiesOrigin.roll-result.roll)*2.78)}}>
               <View style={[styles.containerimage]}>
               <Rectangle2 style={[styles.roll, {transform: [{ rotate: '-90deg'}]}]} fill={"#80471C"}></Rectangle2>
               <HorizonBall style={[styles.airplaneroll]} ></HorizonBall>
