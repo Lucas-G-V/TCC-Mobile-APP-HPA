@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {View, Text, TouchableOpacity,  SafeAreaView,
 Animated} from 'react-native';
 import {useOrientation} from '../useOrientation';
@@ -17,7 +17,7 @@ import HorizonCircle from '../../assets/horizon_circle.svg';
 import HorizonMechanics from '../../assets/horizon_mechanics.svg'; 
 import Circle from '../../assets/circle.svg'; 
 import Rectangle2 from '../../assets/rectangle2.svg';
-
+import BatimentoContext from '../../Contexts/BatimentoContext';//Var global
 
 type AxiesScreenProps = {
   navigation: any;
@@ -35,7 +35,8 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
     })
   }, [])
   
-
+  const [batimentoCardiaco, setBatimentoCardiaco]=useContext(BatimentoContext);//Var lendo Variavel global
+  console.log(batimentoCardiaco);
   
   var [AxiesOrigin,SetAxiesOrigin]=useState({pitch: 0, roll: 0, yaw: 0 });
   let STORAGE_KEY = '@configAxies';
@@ -60,7 +61,7 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
   useState(() => {
     orientationAngle.unsubscribe()
     orientationAngle.subscribe(setResult)
-    readData()
+    readData();
     
   })
   

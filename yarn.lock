@@ -7453,10 +7453,10 @@ source-map@^0.7.3:
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.7.3.tgz"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
 
-sp-react-native-mqtt@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/sp-react-native-mqtt/-/sp-react-native-mqtt-0.5.0.tgz"
-  integrity sha512-kWvpNuYY/AAxRYesvoTbRMWXC84ek/jWKA3xToZbnwqw9OpLwbS4I76OvWo3hRgV4+nibrtyh9Sd9cO/jX4KIg==
+sp-react-native-mqtt@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/sp-react-native-mqtt/-/sp-react-native-mqtt-0.5.1.tgz#935d64a7fa42d47a287c213c49551609d7d1ead3"
+  integrity sha512-8JdwBhy7HK2T7Z45Lc8fm43GeB/9B2m6BIVzbzc17N16ZwuB0R6BLgcCOPVfQJcxR49by5CnYAVPTus3L3guug==
 
 spdx-correct@^3.0.0:
   version "3.1.1"

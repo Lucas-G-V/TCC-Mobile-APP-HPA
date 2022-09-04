@@ -15,159 +15,9 @@ export const options = {
   },
 };
 export const styles = StyleSheet.create({
-  baseText: {
-    fontSize: 15,
-    fontFamily: 'Cochin',
-    color: 'black'
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom:15,
-  },
-  rowView: {
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    color: 'black'
-  },
-  container: {
-    backgroundColor:'#FFFFFF',
-    flex: 1,
-    flexDirection: 'column',
-    width:'100%'
-  },
-  header:{
-    marginBottom: -30,
-  },
-  body:{
-    flex:0.99,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: "space-around",
-    width: '100%',
-  },
-  article:{
-    flexDirection: 'column',
-    alignItems: 'center',
-    height: '30%',
-  },
-  section:{
-    flexDirection: 'row',
-    height:'20%',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    alignContent:'center',
-    width: '100%',
-  },
-  component:{
-    flexDirection: 'row',
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex:1
-    
-  },
-  textview:{
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: 85,
-    width: '90%',
-    borderRadius: 10
-  },
   AndroidSafeArea: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     backgroundColor:'#FFFFFF',
-  },
-  backgroundstatusbar:{
-    height: 100,
-    marginTop: -30,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: "space-evenly",
-  },
-  image: {
-    width: '100%',
-    height: 100, 
-    backgroundColor:  theme.colors.primarycolor, 
-    marginTop: -10
-  },
-  title:{
-    textAlign: 'center',
-    textDecorationColor: '#FFFFFF',
-    height: 'auto',
-    fontWeight: "bold", 
-    color: '#38B6FF',
-    fontSize: 30,
-    marginLeft: 30
-  },
-  text: {
-    textAlign: 'center',
-    textDecorationColor: '#FFFFFF',
-    height: 'auto',
-    fontWeight: "bold", 
-    color: '#000',
-    fontSize: 30,
-    marginLeft: 30
-  },
-  titleh2:{
-    textAlign: 'center',
-    textDecorationColor: '#FFFFFF',
-    height: 'auto',
-    fontWeight: "bold", 
-    color: '#000',
-    fontSize: 25,
-    marginLeft: 10,
-  },
-  titleh1:{
-    textAlign: 'center',
-    textDecorationColor: '#FFFFFF',
-    height: 'auto',
-    fontWeight: "bold", 
-    color: '#000',
-    fontSize: 100,
-  },
-  ph1:{
-    textAlign: 'center',
-    textDecorationColor: '#FFFFFF',
-    height: 'auto',
-    fontWeight: '400', 
-    color: '#000',
-    fontSize: 50,
-    marginTop:-30,
-  },
-  icon:{
-    height: 60,
-    width: 60,
-    marginLeft: 20
-  },
-  gear:{
-    height: 75,
-    width: 75,
-    marginLeft: 0
-  },
-  play:{
-    flexDirection:'column',
-    alignItems: 'center',
-    height:'20%',
-    alignContent: 'space-around',
-  },
-  arrow:{
-    height: 40,
-    width: 40,
-  },
-  bluetooth:{
-    height: 38,
-    width: 60,
-    marginLeft: 0
   },
   StatusBar:{
     textAlign: 'center',
@@ -178,43 +28,113 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     marginLeft: -50
   },
-  maps:{
-    height: 60,
-    width: 60,
-    marginLeft: 0
+  backgroundstatusbar:{
+    height: 100,
+    marginTop: -30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: "space-evenly",
   },
-  attitude:{
-    height: 65,
-    width: 65,
-    marginLeft: 0
+  header:{
+    marginBottom: -30,
+  },
+  container: {
+    backgroundColor:'#FFFFFF',
+    flex: 1,
+    flexDirection: 'column',
+    width:'100%'
+  },
+  body:{
+    flex:0.99,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: "space-around",
+    width: '100%',
+  },
+  articletitle:{
+    flex:1.1,
+    flexDirection: 'column',
+    alignItems: 'center',
+
+  },
+  articletitleLand:{
+    flex:0.7,
+    flexDirection: 'column',
+    alignItems: 'center',
+
+  },
+  section:{
+    flex:1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignContent:'center',
+    width: '100%',
+    
+  },
+  sectionLand:{
+    flex:0.4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignContent:'center',
+    width: '100%',
+
   },  
+  sectionfooterIconLand:{
+    flex:1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignContent:'center',
+    width: '100%',
+    marginLeft:'-15%'
+    
+  },
+
+  sectionFooterLand:{
+    flex:0.4,
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    alignContent:'center',
+    width: '100%',
+ 
+  },
+  component:{
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex:1,
+
+  },
   footer:{
-    flex:0.85,
+    flex:1,
     alignContent: 'flex-end',
     justifyContent:'flex-end',
-
-    width: '100%',
     flexDirection: 'column',
 
   },
-  save:{
-    height: 40,
-    width: 40,
-    marginLeft: 0
-  },
-  button1: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  footerLand:{    
+    flexDirection: 'row',
+    alignContent: 'flex-end',
+    justifyContent:'flex-end',
+
   },
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    position: "absolute",
+    marginLeft:"8%",
+    marginTop: "60%",
+  },  
+  centeredViewLand: {
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    marginLeft:"26%",
+    marginTop: "6%",
   },
   modalView: {
     flex:0.35,
@@ -241,7 +161,96 @@ export const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
+  },
+  textview:{
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+  },
+  titleh2:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: "bold", 
+    color: '#000',
+    fontSize: 25,
+    marginLeft: 10,
+  },
+  titleh1:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: "bold", 
+    color: '#000',
+    fontSize: 100,
+  },
+  ph1:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: '400', 
+    color: '#000',
+    fontSize: 50,
+    marginTop:-15,
+  },
+  titleh1Land:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: "bold", 
+    color: '#000',
+    fontSize: 90,
+  },
+  ph1Land:{
+    textAlign: 'center',
+    textDecorationColor: '#FFFFFF',
+    height: 'auto',
+    fontWeight: '400', 
+    color: '#000',
+    fontSize: 40,
+    marginTop:-15,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: 85,
+    width: '90%',
+    borderRadius: 10
+  },
+  icon:{
+    height: 60,
+    width: 60,
+    marginLeft: 20
+  },
+  gear:{
+    height: 68,
+    width: 68,
+    marginLeft: 0
+  },
+  bluetooth:{
+    height: 38,
+    width: 60,
+    marginLeft: 0
+  },
+  maps:{
+    height: 60,
+    width: 60,
+    marginLeft: 0
+  },
+  attitude:{
+    height: 65,
+    width: 65,
+    marginLeft: 0
+  },  
+  save:{
+    height: 40,
+    width: 40,
+    marginLeft: 0
+  },
+  none:{
+  flex:0.99
+
   }
-
-
   });
