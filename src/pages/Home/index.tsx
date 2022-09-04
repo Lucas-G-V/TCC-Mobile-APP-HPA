@@ -30,17 +30,6 @@ import BatimentoContext from '../../Contexts/BatimentoContext';//Var global
 import MQTT from 'sp-react-native-mqtt';
 
 
-
-
-
-
-
-
-
-
-
-
-
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 const BLTManager = new BleManager();
@@ -71,48 +60,50 @@ type HomeScreenProps= {
   
 const Home = ({ navigation, route }: HomeScreenProps) => {
 
- 
-   const [batimentoCardiaco, setBatimentoCardiaco]=useContext(BatimentoContext);//Var lendo Variavel global
-    console.log(batimentoCardiaco);
+  //Como alterar os dados do objeto da variavel global
+  //  const [sensorData, setSensorData]=useContext(BatimentoContext);//Var lendo Variavel global
+  //   function aumentaBatimento(){
+  //     setSensorData({...sensorData,  batimentoCardiaco: 2 });
+  //     console.log(sensorData.batimentoCardiaco);
+  //     console.log(sensorData.potencia);
+  //   }
 
-    function aumentaBatimento(){
-      setBatimentoCardiaco(2);
-      console.log(batimentoCardiaco);
-    }
 
+    //ctr +k+c comenta tudo selecionado
+    //ctr +k+u descomenta tudo selecionado
 
-    MQTT.createClient({
-      uri: 'mqtt://smartcampus.maua.br:1883',
-      user:'PUBLIC',
-      pass: 'public',
-      auth: true,
-      clientId: '',
-      keepalive:10
+    // MQTT.createClient({
+    //   uri: 'mqtt://smartcampus.maua.br:1883',
+    //   user:'PUBLIC',
+    //   pass: 'public',
+    //   auth: true,
+    //   clientId: '',
+    //   keepalive:10
   
-    }).then(function(client) {
+    // }).then(function(client) {
     
-      client.on('closed', function() {
-        console.log('mqtt.event.closed');
-      });
+    //   client.on('closed', function() {
+    //     console.log('mqtt.event.closed');
+    //   });
     
-      client.on('error', function(msg) {
-        console.log('mqtt.event.error', msg);
-      });
+    //   client.on('error', function(msg) {
+    //     console.log('mqtt.event.error', msg);
+    //   });
     
-      client.on('message', function(msg) {
-        console.log('mqtt.event.message', msg);
-      });
+    //   client.on('message', function(msg) {
+    //     console.log('mqtt.event.message', msg);
+    //   });
     
-      client.on('connect', function() {
-        console.log('connected');
-        client.subscribe('IMT/TCCHPA', 0);
-        client.publish('IMT/TCCHPA', "TMA", 0, false);
-      });
+    //   client.on('connect', function() {
+    //     console.log('connected');
+    //     client.subscribe('IMT/TCCHPA', 0);
+    //     client.publish('IMT/TCCHPA', JSON.stringify(sensorData), 0, false);
+    //   });
     
-      client.connect();
-    }).catch(function(err){
-      console.log(err);
-    });
+    //   client.connect();
+    // }).catch(function(err){
+    //   console.log(err);
+    // });
 
 
 
