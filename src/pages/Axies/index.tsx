@@ -35,8 +35,9 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
     })
   }, [])
   
-  const [batimentoCardiaco, setBatimentoCardiaco]=useContext(BatimentoContext);//Var lendo Variavel global
-  console.log(batimentoCardiaco);
+  //Lendo a Variavel global em outra página
+  //const [sensorData, setSensorData]=useContext(BatimentoContext);//Var lendo Variavel global
+  //console.log(sensorData.batimentoCardiaco);
   
   var [AxiesOrigin,SetAxiesOrigin]=useState({pitch: 0, roll: 0, yaw: 0 });
   let STORAGE_KEY = '@configAxies';
