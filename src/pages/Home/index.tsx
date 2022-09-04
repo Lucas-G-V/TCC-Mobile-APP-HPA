@@ -27,6 +27,7 @@ import Closeicon from '../../assets/close.icon.svg'
 import Config from '../../assets/config.icon.svg';
 
 import BatimentoContext from '../../Contexts/BatimentoContext';//Var global
+import MQTT from 'sp-react-native-mqtt';
 
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
@@ -69,7 +70,38 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     }
 
 
-
+    MQTT.createClient({
+      uri: 'mqtt://smartcampus.maua.br:1883',
+      user:'PUBLIC',
+      pass: 'public',
+      auth: true,
+      clientId: '',
+      keepalive:10
+  
+    }).then(function(client) {
+    
+      client.on('closed', function() {
+        console.log('mqtt.event.closed');
+      });
+    
+      client.on('error', function(msg) {
+        console.log('mqtt.event.error', msg);
+      });
+    
+      client.on('message', function(msg) {
+        console.log('mqtt.event.message', msg);
+      });
+    
+      client.on('connect', function() {
+        console.log('connected');
+        client.subscribe('IMT/TCCHPA', 0);
+        client.publish('IMT/TCCHPA', "TMA", 0, false);
+      });
+    
+      client.connect();
+    }).catch(function(err){
+      console.log(err);
+    });
 
 
 
