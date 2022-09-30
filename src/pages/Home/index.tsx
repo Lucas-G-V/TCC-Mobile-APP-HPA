@@ -26,8 +26,12 @@ import Configurations from '../../pages/Config/index';
 import Closeicon from '../../assets/close.icon.svg'
 import Config from '../../assets/config.icon.svg';
 
-import BatimentoContext from '../../Contexts/BatimentoContext';//Var global
+import SensorDataContext from '../../Contexts/SensorDataContext';//Var global
 import MQTT from 'sp-react-native-mqtt';
+
+import {MqttPubClient} from '../../../services/Mqtt/Publish';
+
+
 
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
@@ -61,49 +65,37 @@ type HomeScreenProps= {
 const Home = ({ navigation, route }: HomeScreenProps) => {
 
   //Como alterar os dados do objeto da variavel global
-  //  const [sensorData, setSensorData]=useContext(BatimentoContext);//Var lendo Variavel global
-  //   function aumentaBatimento(){
-  //     setSensorData({...sensorData,  batimentoCardiaco: 2 });
-  //     console.log(sensorData.batimentoCardiaco);
-  //     console.log(sensorData.potencia);
-  //   }
+   const [sensorData, setSensorData]=useContext(SensorDataContext);//Var lendo Variavel global
+    function aumentaBatimento(){;
+      setSensorData({...sensorData,  batimentoCardiaco: Math.random()});
+    };
 
 
     //ctr +k+c comenta tudo selecionado
     //ctr +k+u descomenta tudo selecionado
 
-    // MQTT.createClient({
-    //   uri: 'mqtt://smartcampus.maua.br:1883',
-    //   user:'PUBLIC',
-    //   pass: 'public',
-    //   auth: true,
-    //   clientId: '',
-    //   keepalive:10
+useEffect(() => {
+      console.log(sensorData)
+      const interval = setInterval(() => {
+        MqttPubClient({
+          uri: 'mqtt://smartcampus.maua.br:1883',
+          user: 'PUBLIC',
+          pass: 'public',
+          auth: true,
+          clientId: '',
+          keepalive: 10,
+          topic: 'IMT/TCCHPA',
+          message: JSON.stringify(sensorData),
+          qos: 0,
+          retain: false,
+          });
+          console.log(sensorData)
+      }, 5000);
+      return () => clearInterval(interval);
+}, [sensorData]);
   
-    // }).then(function(client) {
-    
-    //   client.on('closed', function() {
-    //     console.log('mqtt.event.closed');
-    //   });
-    
-    //   client.on('error', function(msg) {
-    //     console.log('mqtt.event.error', msg);
-    //   });
-    
-    //   client.on('message', function(msg) {
-    //     console.log('mqtt.event.message', msg);
-    //   });
-    
-    //   client.on('connect', function() {
-    //     console.log('connected');
-    //     client.subscribe('IMT/TCCHPA', 0);
-    //     client.publish('IMT/TCCHPA', JSON.stringify(sensorData), 0, false);
-    //   });
-    
-    //   client.connect();
-    // }).catch(function(err){
-    //   console.log(err);
-    // });
+
+
 
 
 
@@ -305,6 +297,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     }
   },[message]);
 
+ 
 
   const orientation = useOrientation();
   return (
@@ -437,5 +430,6 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     </View>
   );
 
+  
 }
 export default Home;

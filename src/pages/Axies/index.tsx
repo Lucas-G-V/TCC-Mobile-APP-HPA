@@ -17,7 +17,8 @@ import HorizonCircle from '../../assets/horizon_circle.svg';
 import HorizonMechanics from '../../assets/horizon_mechanics.svg'; 
 import Circle from '../../assets/circle.svg'; 
 import Rectangle2 from '../../assets/rectangle2.svg';
-import BatimentoContext from '../../Contexts/BatimentoContext';//Var global
+import SensorDataContext from '../../Contexts/SensorDataContext';
+import { MqttPubClient } from '../../../services/Mqtt/Publish';
 
 type AxiesScreenProps = {
   navigation: any;
@@ -26,19 +27,16 @@ type AxiesScreenProps = {
 
 
 export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
-  const [interval, setInterval] = useState(0)
   const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
+  const [sensorData, setSensorData]=useContext(SensorDataContext);
 
   useEffect(() => {
     orientationAngle.getUpdateInterval((value) => {
-      setInterval(10)
     })
+    ;
   }, [])
   
-  //Lendo a Variavel global em outra página
-  //const [sensorData, setSensorData]=useContext(BatimentoContext);//Var lendo Variavel global
-  //console.log(sensorData.batimentoCardiaco);
-  
+ 
   var [AxiesOrigin,SetAxiesOrigin]=useState({pitch: 0, roll: 0, yaw: 0 });
   let STORAGE_KEY = '@configAxies';
   var test= {pitch: 0, roll: 0, yaw: 0 };
@@ -63,12 +61,35 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
     orientationAngle.unsubscribe()
     orientationAngle.subscribe(setResult)
     readData();
-    
+  
   })
+  
+  
+useEffect(() => {
+      const interval = setInterval(() => {
+        MqttPubClient({
+          uri: 'mqtt://smartcampus.maua.br:1883',
+          user: 'PUBLIC',
+          pass: 'public',
+          auth: true,
+          clientId: '',
+          keepalive: 10,
+          topic: 'IMT/TCCHPA',
+          message: JSON.stringify(sensorData),
+          qos: 0,
+          retain: false,
+          });
+          setSensorData({...sensorData,  axies:result })
+          ;
+      }, 20000);
+      return () => clearInterval(interval);
+}, [sensorData])
+
+
   
 
   const orientation = useOrientation();
-
+ 
 
   return (
     <View style={styles.container}>
