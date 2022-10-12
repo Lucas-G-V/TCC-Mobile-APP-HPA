@@ -161,7 +161,7 @@ export const styles = StyleSheet.create({
     width: 40,
   },
   mapContainer: {
-    flex: 1,
+    flex: 2.4,
     backgroundColor: '#ffffff',
   },
   scrollContainer: {

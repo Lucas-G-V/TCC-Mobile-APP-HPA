@@ -74,30 +74,25 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     //ctr +k+c comenta tudo selecionado
     //ctr +k+u descomenta tudo selecionado
 
-useEffect(() => {
-      console.log(sensorData)
+  useEffect(() => {
       const interval = setInterval(() => {
-        MqttPubClient({
-          uri: 'mqtt://smartcampus.maua.br:1883',
-          user: 'PUBLIC',
-          pass: 'public',
-          auth: true,
-          clientId: '',
-          keepalive: 10,
-          topic: 'IMT/TCCHPA',
-          message: JSON.stringify(sensorData),
-          qos: 0,
-          retain: false,
-          });
-          console.log(sensorData)
-      }, 5000);
-      return () => clearInterval(interval);
-}, [sensorData]);
-  
-
-
-
-
+        setSensorData({...sensorData,  timestamp: Date.now() });
+         MqttPubClient({
+           uri: 'mqtt://smartcampus.maua.br:1883',
+           user: 'PUBLIC',
+           pass: 'public',
+           auth: true,
+           clientId: '',
+           keepalive: 10,
+           topic: 'IMT/TCCHPA',
+           message: JSON.stringify(sensorData),
+           qos: 0,
+           retain: false,
+           });
+      }, 60000);
+       return () => clearInterval(interval);
+ }, [sensorData.timestamp]);
+   
 
   let Glicose = '';
   let Duracao = '';

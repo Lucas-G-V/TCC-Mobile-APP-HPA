@@ -18,25 +18,19 @@ import HorizonMechanics from '../../assets/horizon_mechanics.svg';
 import Circle from '../../assets/circle.svg'; 
 import Rectangle2 from '../../assets/rectangle2.svg';
 import SensorDataContext from '../../Contexts/SensorDataContext';
-import { MqttPubClient } from '../../../services/Mqtt/Publish';
+
 
 type AxiesScreenProps = {
   navigation: any;
   route: any;
+  dataAxies: any;
 }
 
 
-export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
-  const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
+export const Axies = ({ navigation, route, dataAxies }: AxiesScreenProps) =>{
+ 
   const [sensorData, setSensorData]=useContext(SensorDataContext);
 
-  useEffect(() => {
-    orientationAngle.getUpdateInterval((value) => {
-    })
-    ;
-  }, [])
-  
- 
   var [AxiesOrigin,SetAxiesOrigin]=useState({pitch: 0, roll: 0, yaw: 0 });
   let STORAGE_KEY = '@configAxies';
   var test= {pitch: 0, roll: 0, yaw: 0 };
@@ -52,45 +46,18 @@ export const Axies = ({ navigation, route }: AxiesScreenProps) =>{
 
       }
     } catch (e) {
-      
     }
   };
   
 
   useState(() => {
-    orientationAngle.unsubscribe()
-    orientationAngle.subscribe(setResult)
     readData();
-  
   })
   
   
-useEffect(() => {
-      const interval = setInterval(() => {
-        MqttPubClient({
-          uri: 'mqtt://smartcampus.maua.br:1883',
-          user: 'PUBLIC',
-          pass: 'public',
-          auth: true,
-          clientId: '',
-          keepalive: 10,
-          topic: 'IMT/TCCHPA',
-          message: JSON.stringify(sensorData),
-          qos: 0,
-          retain: false,
-          });
-          setSensorData({...sensorData,  axies:result })
-          ;
-      }, 20000);
-      return () => clearInterval(interval);
-}, [sensorData])
 
-
-  
 
   const orientation = useOrientation();
- 
-
   return (
     <View style={styles.container}>
 
@@ -114,13 +81,13 @@ useEffect(() => {
 
           <View style={styles.containerRoll}>
 
-            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", transform: [{ rotate: (result.roll-AxiesOrigin.roll) + 'deg'}]} :{position: "relative", transform: [{ rotate: (result.pitch-AxiesOrigin.pitch) + 'deg'}]}}>
+            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", transform: [{ rotate: (sensorData.axies.roll-AxiesOrigin.roll) + 'deg'}]} :{position: "relative", transform: [{ rotate: (sensorData.axies.pitch-AxiesOrigin.pitch) + 'deg'}]}}>
               <View style={[styles.containerimage]}>              
               <Circle2 style={[styles.roll, {transform: [{ rotate: '90deg'}]}]} fill={"#38B6FF"}></Circle2>
               <AirplaneRoll style={[styles.airplaneroll]} fill={"#38B6FF"}></AirplaneRoll>
               </View>
               </Animated.View>
-              <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (result.roll-AxiesOrigin.roll).toFixed(1)+'°' :(result.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
+              <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (sensorData.axies.roll-AxiesOrigin.roll).toFixed(1)+'°' :(sensorData.axies.pitch-AxiesOrigin.pitch).toFixed(1)+'°'}</Text>
             <CircleAngle style={[styles.circleangle, {transform: [{ rotate: '180deg'}]}]} fill={"#000"}>
             </CircleAngle>
           </View>
@@ -129,11 +96,11 @@ useEffect(() => {
           <View style={styles.containerPitch}>
             <Circle style={[styles.roll ]} fill={"#38B6FF"}>
             </Circle>
-            <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (result.pitch-AxiesOrigin.pitch).toFixed(1)+'°' :(result.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>              
+            <Text style={styles.titleValue}>{orientation === 'PORTRAIT' ? (sensorData.axies.pitch-AxiesOrigin.pitch).toFixed(1)+'°' :(sensorData.axies.roll-AxiesOrigin.roll).toFixed(1)+'°'}</Text>              
             <View style={[styles.logoCircle]}>
 
             
-            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", translateY: ((result.pitch-AxiesOrigin.pitch)*2.78)} :{position: "relative", translateY: ((AxiesOrigin.roll-result.roll)*2.78)}}>
+            <Animated.View style={orientation === 'PORTRAIT' ? {position: "relative", translateY: ((sensorData.axies.pitch-AxiesOrigin.pitch)*2.78)} :{position: "relative", translateY: ((AxiesOrigin.roll-sensorData.axies.roll)*2.78)}}>
               <View style={[styles.containerimage]}>
               <Rectangle2 style={[styles.roll, {transform: [{ rotate: '-90deg'}]}]} fill={"#80471C"}></Rectangle2>
               <HorizonBall style={[styles.airplaneroll]} ></HorizonBall>
@@ -149,7 +116,7 @@ useEffect(() => {
           
 
 
-            <Animated.View style={[styles.anim, {transform: [{ rotate: (result.yaw) + 'deg'}]}]}>
+            <Animated.View style={[styles.anim, {transform: [{ rotate: (sensorData.axies.yaw) + 'deg'}]}]}>
               <View style={[styles.containerimage]}>
                 <HeadingYaw style={[styles.circleangle]} fill={"#38B6FF"}> 
                 </HeadingYaw>
