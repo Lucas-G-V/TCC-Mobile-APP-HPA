@@ -1,16 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text, 
   View, 
-  Alert, 
-  Linking, 
   PermissionsAndroid,
   ToastAndroid,
   Platform, 
   ScrollView, 
-  Switch, 
   Button,
   SafeAreaView,
-  TouchableHighlight,
   TouchableOpacity} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import VIForegroundService from '@voximplant/react-native-foreground-service';
@@ -20,8 +16,6 @@ import { styles } from './style';
 import { MapView } from '../../components/MapView'
 import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
-import { Polyline } from 'react-native-maps';
-import Map from '../../components/Map';
 
 
 interface TrackpointProps {
@@ -30,22 +24,13 @@ interface TrackpointProps {
     LatitudeDegrees: number;
     LongitudeDegrees: number;
   };
-  AltitudeMeters: number;
-  DistanceMeters: number;
-  HeartRateBpm: {
-    '@xsi:type': string;
-    Value: number;
-  };
-  SensorState: string;
 }
-
 
 type NavegacaoScreenProps = {
   navigation: any;
   route: any;
 }
 export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
-  // const [region, setRegion] = useState<Region>();
   const [forceLocation, setForceLocation] = useState(true);
   const [highAccuracy, setHighAccuracy] = useState(true);
   const [locationDialog, setLocationDialog] = useState(true);
@@ -58,43 +43,9 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
 
   const watchId: any = useRef(null);
 
-  // Has Permission on iOS
-  const hasPermissionIOS = async () => {
-    const openSetting = () => {
-      Linking.openSettings().catch(() => {
-        Alert.alert('Unable to open settings');
-      });
-    };
-    const status = await Geolocation.requestAuthorization('whenInUse');
-
-    if (status === 'granted') {
-      return true;
-    }
-
-    if (status === 'denied') {
-      Alert.alert('Location permission denied');
-    }
-
-    if (status === 'disabled') {
-      Alert.alert(
-        `Turn on Location Services to allow GeoLoc to determine your location.`,
-        '',
-        [
-          { text: 'Go to Settings', onPress: openSetting },
-          { text: "Don't Use Location", onPress: () => { } },
-        ],
-      );
-    }
-
-    return false;
-  };
 
   // Has Permission
   const hasLocationPermission = async () => {
-    if (Platform.OS === 'ios') {
-      const hasPermission = await hasPermissionIOS();
-      return hasPermission;
-    }
 
     if (Platform.OS === 'android' && Platform.Version < 23) {
       return true;
@@ -131,39 +82,6 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
     return false;
   };
 
-  // Get location after permissions
-  const getLocation = async () => {
-    const hasPermission = await hasLocationPermission();
-
-    if (!hasPermission) {
-      return;
-    }
-
-    Geolocation.getCurrentPosition(
-      (position: any) => {
-        setLocation(position);
-        console.log(position);
-      },
-      (error) => {
-        Alert.alert(`Code ${error.code}`, error.message);
-        setLocation(null);
-        console.log(error);
-      },
-      {
-        accuracy: {
-          android: 'high',
-          ios: 'best',
-        },
-        enableHighAccuracy: highAccuracy,
-        timeout: 15000,
-        maximumAge: 10000,
-        distanceFilter: 0,
-        forceRequestLocation: forceLocation,
-        forceLocationManager: useLocationManager,
-        showLocationDialog: locationDialog,
-      },
-    );
-  };
 
   // update location after permissions
   const getLocationUpdates = async () => {
@@ -182,7 +100,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
     watchId.current = Geolocation.watchPosition(
       (position: any) => {
         setLocation(position);
-        console.log(position);
+        //console.log(position);
         handleTrackpoint(position);
 
       },
@@ -229,7 +147,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
   };
 
   const stopForegroundService = useCallback(() => {
-    VIForegroundService.stopService().catch((err: any) => err);
+    VIForegroundService.getInstance().stopService().catch((err: any) => err);
   }, []);
 
   const removeLocationUpdates = useCallback(() => {
@@ -245,7 +163,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
     return () => {
       removeLocationUpdates();
     };
-  }, [removeLocationUpdates]);
+  }, []);
  
 
     // Function to create new trackpoints 
@@ -256,16 +174,9 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         Position: {
           LatitudeDegrees: position.coords?.latitude,
           LongitudeDegrees: position.coords?.longitude,
-        },
-        AltitudeMeters: position.coords?.altitude,
-        DistanceMeters: position.coords?.distance,
-        HeartRateBpm: {
-          '@xsi:type': 'HeartRateInBeatsPerMinute_t',
-          Value: randomId
-        },
-        SensorState: 'Absent',
+        }
       }]
-      console.log(`trackpoint: ${JSON.stringify(trackpoint)}`)
+      //console.log(`trackpoint: ${JSON.stringify(trackpoint)}`)
     };
 
   return (
@@ -295,7 +206,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
 
 
         <View style={styles.buttonContainer}>
-          <Button title="Get Location" onPress={getLocation} />
+
           <View style={styles.buttons}>
             <Button
               title="Start Observing"
@@ -314,18 +225,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
         <View style={styles.result}>
           <Text style={styles.titleText}>Latitude: {location?.coords?.latitude || ''}</Text>
           <Text style={styles.titleText}>Longitude: {location?.coords?.longitude || ''}</Text>
-          <Text style={styles.titleText}>Heading: {location?.coords?.heading}</Text>
-          <Text style={styles.titleText}>Accuracy: {location?.coords?.accuracy}</Text>
           <Text style={styles.titleText}>Altitude: {location?.coords?.altitude}</Text>
-          <Text style={styles.titleText}>Altitude Accuracy: {location?.coords?.altitudeAccuracy}</Text>
-          <Text style={styles.titleText}>Speed: {location?.coords?.speed}</Text>
-          <Text style={styles.titleText}>Provider: {location?.provider || ''}</Text>
-          <Text style={styles.titleText}>
-            Timestamp:{' '}
-            {location?.timestamp
-              ? new Date(location.timestamp).toLocaleString()
-              : ''}
-          </Text>
         </View>
 
       </ScrollView>

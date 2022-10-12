@@ -3,35 +3,18 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import { orientationAngle } from 'react-native-orientation-angle'
 import {styles} from './style';
 import AsyncStorage from '@react-native-community/async-storage';
-
-
-
+import SensorDataContext from '../../Contexts/SensorDataContext';
 
 let exportAxies: any;
 
   const Configurations = () =>{
-;
+
   const [interval, setInterval] = useState(0)
   const [result, setResult] = useState({ pitch: 0, roll: 0, yaw: 0 })
-
-  useEffect(() => {
-    orientationAngle.getUpdateInterval((value) => {
-      setInterval(10)
-    })
-  }, [])
+  const [sensorData, setSensorData]=useContext(SensorDataContext);
+  const [selo, setSelo] =useState(0)
+  var resetvalue={ pitch: 0, roll: 0, yaw: 0 };
   
-  useState(() => {
-    orientationAngle.unsubscribe()
-    orientationAngle.subscribe(setResult)
-  })
-  
-  const renderValue = (label: string, value: string) => (
-    <View style={styles.box}>
-      <Text style={styles.renderText}>{label}: </Text>
-      <Text style={styles.renderText}>{value} </Text>
-    </View>
-  )
-
 
   let STORAGE_KEY = '@configAxies';
   const saveData = async (results:any) => {
@@ -45,31 +28,25 @@ let exportAxies: any;
 
   async function saveAxies()
   {
-    
-    saveData(result);
-    
-    orientationAngle.unsubscribe()
-
+    saveData(sensorData.axies);
+    setSelo(0)
   }
+
   async function saveAxiesDefault()
   {
-
     saveData({ pitch: 0, roll: 0, yaw: 0 });
-    setResult({ pitch: 0, roll: 0, yaw: 0 });
-
-    orientationAngle.unsubscribe()
-
-
+    setSelo(1)
   }
 
   return (
     <View style={styles.container}>
         <Text style={styles.titleText}> Configurações de posição inicial </Text>
           <View style={styles.box}>
-            {renderValue('Pitch', result.pitch.toFixed(2))}
-            {renderValue('Roll', result.roll.toFixed(2))}
-            {renderValue('Yaw', result.yaw.toFixed(2))}
+          <Text style={styles.renderText}>{selo === 0 ? ('Pitch: '+ (sensorData.axies.pitch).toFixed(1)) :('Pitch: '+ (resetvalue.pitch).toFixed(1))}</Text>
+          <Text style={styles.renderText}>{selo === 0 ? (' Roll: '+ (sensorData.axies.roll).toFixed(1)) :(' Roll: '+ (resetvalue.roll).toFixed(1))}</Text>
+          <Text style={styles.renderText}>{selo === 0 ? (' Yaw: '+ (sensorData.axies.yaw).toFixed(1)) :(' Yaw: ' + (resetvalue.yaw).toFixed(1))}</Text>
           </View>
+
           <TouchableOpacity style={styles.button} onPress={() => {saveAxiesDefault();}}>
               <Text style={styles.buttonText}>Resetar Posição</Text>
           </TouchableOpacity>
