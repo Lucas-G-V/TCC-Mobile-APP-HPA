@@ -13,7 +13,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {styles} from './style';
 import {LogBox} from 'react-native';
 import {useOrientation} from '../useOrientation';
-
 import Speed from '../../assets/low-speed-svgrepo-com.svg'
 import Heart from '../../assets/pulse.svg';
 import Glucose from '../../assets/sugar-blood-level-diabetes-svgrepo-com.svg';
@@ -25,21 +24,21 @@ import Attitude from '../../assets/attitude.svg';
 import Configurations from '../../pages/Config/index';
 import Closeicon from '../../assets/close.icon.svg'
 import Config from '../../assets/config.icon.svg';
-
 import SensorDataContext from '../../Contexts/SensorDataContext';//Var global
-import MQTT from 'sp-react-native-mqtt';
-
 import {MqttPubClient} from '../../../services/Mqtt/Publish';
-
-
-
 
 LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 const BLTManager = new BleManager();
-const SERVICE_UUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
-const MESSAGE_UUID = '6d68efe5-04b6-4a85-abc4-c2670b7bf7fd';
-const BOX_UUID = 'f27b53ad-c63d-49a0-8c0f-9f297e6cc520';
+const SERVICE_UUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';// Manter conexão com ESP32
+const BATIMENTO_UUID = '6d68efe5-04b6-4a85-abc4-c2670b7bf7fd';// Coração
+const VELOCIDADE_UUID = 'f27b53ad-c63d-49a0-8c0f-9f297e6cc520';//Velocidade
+const POTENCIA_UUID ='8b49c16e-4d5f-11ed-bdc3-0242ac120002';//Potencia
+const GLICOSE_UUID ='11c6c9d4-4dac-11ed-bdc3-0242ac120002';//Potencia
+const ALTURA_UUID ='ebfabdba-4d5f-11ed-bdc3-0242ac120002';//Potencia
+
+
 
 function StringToBool(input: String) {
   if (input == '1') {
@@ -55,81 +54,30 @@ function BoolToString(input: boolean) {
     return '0';
   }
 }
-
 type HomeScreenProps= {
   navigation: any;
   route: any;
-}
-
-  
+}  
 const Home = ({ navigation, route }: HomeScreenProps) => {
-
   //Como alterar os dados do objeto da variavel global
    const [sensorData, setSensorData]=useContext(SensorDataContext);//Var lendo Variavel global
-    function aumentaBatimento(){;
-      setSensorData({...sensorData,  batimentoCardiaco: Math.random()});
-    };
-
-
     //ctr +k+c comenta tudo selecionado
     //ctr +k+u descomenta tudo selecionado
-
-  useEffect(() => {
-      const interval = setInterval(() => {
-        setSensorData({...sensorData,  timestamp: Date.now() });
-         MqttPubClient({
-           uri: 'mqtt://smartcampus.maua.br:1883',
-           user: 'PUBLIC',
-           pass: 'public',
-           auth: true,
-           clientId: '',
-           keepalive: 10,
-           topic: 'IMT/TCCHPA',
-           message: JSON.stringify(sensorData),
-           qos: 0,
-           retain: false,
-           });
-      }, 60000);
-       return () => clearInterval(interval);
- }, [sensorData.timestamp]);
-   
-
   let Glicose = '';
   let Duracao = '';
   let velocidade = '';
   let DistanciaPercorrida = 10;
   const [input, setInput] = useState('');
-
-  let STORAGE_KEY = '@Heart';
-  const saveData = async (results:any) => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, results)
-      
-    } catch (e) {
-      
-    }
-  }
-  const readData = async () => {
-    try {
-      const value = await AsyncStorage.getItem(STORAGE_KEY);
-      if (value !== null) {
-        setInput(value);
-      }
-    } catch (e) {
-      
-    }
-  };
-
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
   //Is a device connected?
   const [isConnected, setIsConnected] = useState(false);
   //What device is connected?
   const [connectedDevice, setConnectedDevice] = useState<Device>();
   //Mensagens chegando via bluetooth
-  const [message, setMessage] = useState('');
-  const [boxvalue, setBoxValue] = useState(false);  
-  const [datasaveHeart, setDataSaveHeart] = useState('');
+  const [message, setMessage] = useState('');//value heart  
+  const [potenciavalue, setPotenciaValue] = useState(''); 
+  const [glicosevalue, setGlicoseValue] = useState('');
+  const [alturavalue, setAlturaValue] = useState(''); 
   const [speedvalue, setSpeedValue]=useState('');
   //Modal code for visualization- Lucas
   const [modalVisible, setModalVisible] = useState(false);
@@ -138,13 +86,13 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   function colorHeart(isConnected: boolean){
   if (isConnected==true) {
     setheartcolor("#38B6FF");
+    
   }
   else{
     setheartcolor("#000000");
   }
 }
 
-  
   useEffect(() => {console.log(isConnected);colorHeart(isConnected);
     },[isConnected] );
   // Scans availbale BLT Devices and then call connectDevice
@@ -161,7 +109,6 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
     ).then(answere => {
       console.log('scanning');
       // display the Activityindicator
-      
       BLTManager.startDeviceScan(null, null, (error, scannedDevice) => {
         if (error) {
           console.warn(error);
@@ -198,20 +145,8 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
         setIsConnected(false);
       }
     }
-    saveData(datasaveHeart);
   }
-  //Function to send data to ESP32
-  async function sendBoxValue(value: boolean) {
-    BLTManager.writeCharacteristicWithResponseForDevice(
-      connectedDevice?.id,
-      SERVICE_UUID,
-      BOX_UUID,
-      base64.encode(value.toString()),
-    ).then(characteristic => {
-      console.log('Boxvalue changed to :', base64.decode(characteristic.value));
-      //setSpeedValue(characteristic.value);//Ygor e Lucas
-    });
-  }
+
   //Connect the device and start monitoring characteristics
   async function connectDevice(device: Device) {
     console.log('connecting to Device:', device.name);
@@ -229,70 +164,159 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
           setIsConnected(false);
         });
         //Read inital values
-        //Message
+
+        //Adicionar novos Devices...............................................
         device
-          .readCharacteristicForService(SERVICE_UUID, MESSAGE_UUID)
+          .readCharacteristicForService(SERVICE_UUID, BATIMENTO_UUID)
           .then(valenc => {
             setMessage(base64.decode(valenc?.value));
-            
           });
-          
-
-        //BoxValue
+        //SpeedValue
         device
-          .readCharacteristicForService(SERVICE_UUID, BOX_UUID)
+          .readCharacteristicForService(SERVICE_UUID, VELOCIDADE_UUID)
           .then(valenc => {
-            setBoxValue(StringToBool(base64.decode(valenc?.value)));
-            
+            setSpeedValue(base64.decode(characteristic?.value));
           });
+        //Potencia
+        device
+        .readCharacteristicForService(SERVICE_UUID, POTENCIA_UUID)
+        .then(valenc => {
+          setPotenciaValue((base64.decode(valenc?.value)));
+        });
+        //Glicose
+        device
+        .readCharacteristicForService(SERVICE_UUID, GLICOSE_UUID)
+        .then(valenc => {
+          setGlicoseValue((base64.decode(valenc?.value)));
+        });
+        //Glicose
+        device
+        .readCharacteristicForService(SERVICE_UUID, ALTURA_UUID)
+        .then(valenc => {
+          setAlturaValue((base64.decode(valenc?.value)));
+        });
+        //.......................................................................
+
         //monitor values and tell what to do when receiving an update
         //Message
         device.monitorCharacteristicForService(
           SERVICE_UUID,
-          MESSAGE_UUID,
+          BATIMENTO_UUID,
           (error, characteristic) => {
             if (characteristic?.value != null) {
               setMessage(base64.decode(characteristic?.value))
               console.log(
                 'Message update received: ',
                 base64.decode(characteristic?.value),
-                
-                
               )
-              
-
             }
-            
           },
           'messagetransaction',
         );
+        //............................................................
         device.monitorCharacteristicForService(
           SERVICE_UUID,
-          BOX_UUID,
+          VELOCIDADE_UUID,
           (error, characteristic) => {
             if (characteristic?.value != null) {
-              setBoxValue(StringToBool(base64.decode(characteristic?.value)));
               setSpeedValue(base64.decode(characteristic?.value));//Ygor e Lucas
               console.log(
-                'Box Value update received: ',
+                'Speed Value update received: ',
                 base64.decode(characteristic?.value),
               );
             }
           },
-          'boxtransaction',
+          'speedtransaction',
+        );
+        //............................................................
+        device.monitorCharacteristicForService(
+          SERVICE_UUID,
+          POTENCIA_UUID,
+          (error, characteristic) => {
+            if (characteristic?.value != null) {
+              setPotenciaValue(base64.decode(characteristic?.value))
+              console.log(
+                'Potencia update received: ',
+                base64.decode(characteristic?.value),
+              )
+            }
+          },
+          'potenciatransaction',
+        );
+        //................................................................
+        device.monitorCharacteristicForService(
+          SERVICE_UUID,
+          GLICOSE_UUID,
+          (error, characteristic) => {
+            if (characteristic?.value != null) {
+              setGlicoseValue(base64.decode(characteristic?.value))
+              console.log(
+                'glicose update received: ',
+                base64.decode(characteristic?.value),
+              )
+            }
+          },
+          'glicosetransaction',
+        );
+        //.................................................................
+        device.monitorCharacteristicForService(
+          SERVICE_UUID,
+          ALTURA_UUID,
+          (error, characteristic) => {
+            if (characteristic?.value != null) {
+              setAlturaValue(base64.decode(characteristic?.value))
+              console.log(
+                'Altura update received: ',
+                base64.decode(characteristic?.value),
+              )
+            }
+          },
+          'alturasetransaction',
         );
         console.log('Connection established');
       });
-
   }
+// Atualizando o Context com as variasveis enviadas via bluetooth
   useEffect(()=>{
     if(message != 'Nothing Yet'){
-      setDataSaveHeart(datasaveHeart+message+', ');
-
+      setSensorData({...sensorData,  batimentoCardiaco: Number(message),
+        potencia: Number(potenciavalue), 
+        altura: Number(alturavalue), 
+        velocidade: Number(speedvalue), 
+        glicose: Number(glicosevalue)});
     }
   },[message]);
 
+//...........................................................................
  
+//Envio do MQTT
+const [mqtt, setMqtt]= useState(0)
+  useEffect(() => {
+      const interval = setInterval(() => {
+      setMqtt(Math.random())
+    }, 60000);
+     return () => clearInterval(interval);
+  },[])
+
+  useEffect(() => {
+      var data=sensorData
+      data.timestamp= Date.now()
+      setSensorData({...sensorData,  timestamp:  Date.now()});
+       MqttPubClient({
+         uri: 'mqtt://smartcampus.maua.br:1883',
+         user: 'PUBLIC',
+         pass: 'public',
+         auth: true,
+         clientId: '',
+         keepalive: 10,
+         topic: 'IMT/TCCHPA',
+         message: JSON.stringify(data),
+         qos: 0,
+         retain: false,
+         });
+}, [mqtt]);
+//.............................................
+
 
   const orientation = useOrientation();
   return (
@@ -337,7 +361,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
                   <TouchableOpacity onPress={() => {
                 navigation.navigate('File', {
                 }); }}>
-                  <Heart style={styles.icon} fill={heartcolor}></Heart>
+                  <Heart style={styles.icon} fill={message !== null ? heartcolor : '#000'}></Heart>
                   </TouchableOpacity>
 
                     <View style={styles.textview}>
@@ -346,9 +370,13 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
                     </View>
                 </View>
                 <View style={styles.component}>
-                    <Glucose style={styles.icon} fill={"#000000"}></Glucose>
+                    <TouchableOpacity onPress={() => {
+                    navigation.navigate('File', {
+                    }); }}>
+                    <Glucose style={styles.icon} fill={glicosevalue !== null ? heartcolor : '#000'}></Glucose>
+                    </TouchableOpacity>
                     <View style={styles.textview}>
-                      <Text style={styles.titleh2}>{Glicose}</Text>
+                      <Text style={styles.titleh2}>{glicosevalue}</Text>
                       <Text style={styles.titleh2}>mg/dL</Text>
                     </View>
                 </View>
@@ -357,14 +385,22 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
 
               <View style={styles.section}>
                 <View style={styles.component}>
-                  <Gear style={styles.gear} fill={"#000000"}></Gear>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('File', {
+                    }); }}>
+                  <Gear style={styles.gear} fill={glicosevalue !== null ? heartcolor : '#000'}></Gear>
+                  </TouchableOpacity>
                   <View style={styles.textview}>
-                        <Text style={styles.titleh2}>{velocidade}</Text>
+                        <Text style={styles.titleh2}>{potenciavalue}</Text>
                         <Text style={styles.titleh2}>W</Text>
                   </View>
                 </View>
                 <View style={styles.component}>
-                  <Speed style={styles.icon} fill={"#000000"}></Speed>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('File', {
+                    }); }}>
+                  <Speed style={styles.icon} fill={speedvalue !== null ? heartcolor : '#000'}></Speed>
+                </TouchableOpacity>
                   <View style={styles.textview}>
                     <Text style={styles.titleh2}>{speedvalue}</Text>
                     <Text style={styles.titleh2}>m/s</Text>

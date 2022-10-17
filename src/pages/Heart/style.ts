@@ -28,11 +28,10 @@ export const styles = StyleSheet.create({
     marginBottom: -30,
   },
   body:{
-    height: '70%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: '100%',
+
   },
   chart:{
     width: '100%',
@@ -149,23 +148,6 @@ export const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
-  chartConfig:{
-    backgroundColor: '#FFFFFF',
-    backgroundGradientFrom: "#FFFFFF",
-    backgroundGradientTo: '#FFFFFF',
-    decimalPlaces: 0, // optional, defaults to 2dp
-    
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    style: {
-      borderRadius: 4,
-      color:"#FFFF"
-    },
-    propsForDots: {
-      r: "4",
-      strokeWidth: "1",
-      stroke: "#000000",
-    },
-  },
 
   });
+
