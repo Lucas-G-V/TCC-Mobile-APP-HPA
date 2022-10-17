@@ -23,6 +23,7 @@ import appConfig from '../../app.json';
         potencia:0,
         velocidade:0,
         glicose:0,
+        altura:0,
         position:posicao,
         axies:result,
     });
@@ -31,6 +32,7 @@ import appConfig from '../../app.json';
         orientationAngle.getUpdateInterval((value) => {
         }),
         setSensorData({...sensorData, axies:result})
+        //console.log(sensorData.axies)
 
         ;
     }, [result])
