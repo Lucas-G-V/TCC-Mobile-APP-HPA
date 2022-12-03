@@ -189,7 +189,7 @@ export const Navegacao = ({ navigation, route }: NavegacaoScreenProps) => {
             }); }}>
             <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
             </TouchableOpacity>
-            <Text style={styles.title}>NAVEGAÇÃO</Text>
+            <Text style={styles.title}>LOCALIZAÇÃO</Text>
             <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
         </View>

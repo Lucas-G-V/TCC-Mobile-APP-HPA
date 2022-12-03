@@ -71,7 +71,7 @@ export const Axies = ({ navigation, route, dataAxies }: AxiesScreenProps) =>{
               }); }}>
               <Arrow style={styles.arrow} fill={"#38B6FF"}></Arrow>
               </TouchableOpacity>
-              <Text style={styles.titleHandler}>AXIES</Text>
+              <Text style={styles.titleHandler}>NAVEGAÇÃO</Text>
               <HeartTitle style={[styles.icon]} fill={"#38B6FF"}></HeartTitle>
           </View>
         </View>

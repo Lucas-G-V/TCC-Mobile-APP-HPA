@@ -38,35 +38,15 @@ const POTENCIA_UUID ='8b49c16e-4d5f-11ed-bdc3-0242ac120002';//Potencia
 const GLICOSE_UUID ='11c6c9d4-4dac-11ed-bdc3-0242ac120002';//Potencia
 const ALTURA_UUID ='ebfabdba-4d5f-11ed-bdc3-0242ac120002';//Potencia
 
-
-
-function StringToBool(input: String) {
-  if (input == '1') {
-    return true;
-  } else {
-    return false;
-  }
-}
-function BoolToString(input: boolean) {
-  if (input == true) {
-    return '1';
-  } else {
-    return '0';
-  }
-}
 type HomeScreenProps= {
   navigation: any;
   route: any;
 }  
-const Home = ({ navigation, route }: HomeScreenProps) => {
-  //Como alterar os dados do objeto da variavel global
-   const [sensorData, setSensorData]=useContext(SensorDataContext);//Var lendo Variavel global
     //ctr +k+c comenta tudo selecionado
     //ctr +k+u descomenta tudo selecionado
-  let Glicose = '';
-  let Duracao = '';
-  let velocidade = '';
-  let DistanciaPercorrida = 10;
+const Home = ({ navigation, route }: HomeScreenProps) => {
+  //Como alterar os dados do objeto da variavel global
+  const [sensorData, setSensorData]=useContext(SensorDataContext);//Var lendo Variavel global
   const [input, setInput] = useState('');
   const [isLoading, setLoading] = useState(true);
   //Is a device connected?
@@ -83,6 +63,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   //Mudando a cor do corção quando conectado
   const [heartcolor, setheartcolor] = useState("#000000");
+
   function colorHeart(isConnected: boolean){
   if (isConnected==true) {
     setheartcolor("#38B6FF");
@@ -113,7 +94,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
         if (error) {
           console.warn(error);
         }
-        if (scannedDevice && scannedDevice.name == 'BLEExample') {
+        if (scannedDevice && scannedDevice.name == 'Esp_Heart') {
           BLTManager.stopDeviceScan();
           connectDevice(scannedDevice);
         }
@@ -121,7 +102,7 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
       // stop scanning devices after 5 seconds
       setTimeout(() => {
         BLTManager.stopDeviceScan();
-      }, 5000);
+      }, 10000);
     });
   }
   // handle the device disconnection (poorly)
@@ -196,7 +177,6 @@ const Home = ({ navigation, route }: HomeScreenProps) => {
           setAlturaValue((base64.decode(valenc?.value)));
         });
         //.......................................................................
-
         //monitor values and tell what to do when receiving an update
         //Message
         device.monitorCharacteristicForService(
@@ -294,7 +274,7 @@ const [mqtt, setMqtt]= useState(0)
   useEffect(() => {
       const interval = setInterval(() => {
       setMqtt(Math.random())
-    }, 60000);
+    },500);
      return () => clearInterval(interval);
   },[])
 
