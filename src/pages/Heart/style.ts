@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor:'#FFFFFF',
     flex: 1,
-    flexDirection: 'column',
     width:'100%'
   },
   header:{
@@ -31,11 +30,17 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-
   },
   chart:{
     width: '100%',
-    marginLeft: -10
+    marginLeft: -10,
+    flexDirection: 'column',
+
+  },
+  charthorizontal:{
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   article:{
     flexDirection: 'column',

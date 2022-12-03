@@ -10,6 +10,7 @@ import Arrow from '../../assets/left-arrow-svgrepo-com.svg';
 import HeartTitle from '../../assets/heart-disease.svg';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryLine, VictoryTheme } from 'victory-native';
 import SensorDataContext from '../../Contexts/SensorDataContext';
+import { useOrientation } from '../useOrientation';
 
 
 type FileScreenProps = {
@@ -62,6 +63,7 @@ useEffect(() => {
 
 },[count])
 
+const orientation = useOrientation();
 
 
 
@@ -79,11 +81,11 @@ useEffect(() => {
           <HeartTitle style={styles.icon} fill={"#38B6FF"}></HeartTitle>
         </View>
       </View>
-    <View style={styles.chart}>
+    <View style={orientation === 'PORTRAIT' ? styles.chart: styles.charthorizontal}>
 
-    <VictoryChart maxDomain={{ y:150}}  minDomain={{ y:32}}scale={{ x: "linear", y: "linear" }}    theme={VictoryTheme.material} width={450}>
-      <VictoryLabel x={25} y={30} text={"BPM"} />
-      <VictoryLabel x={390} y={30} text={"mg/dL"} />
+    <VictoryChart maxDomain={{ y:150}}  minDomain={{ y:32}}scale={{ x: "linear", y: "linear" }}    theme={VictoryTheme.material} width={455}>
+      <VictoryLabel x={25} y={30} text={"BPM"}  style={ { stroke: "#c43a31" }} />
+      <VictoryLabel x={390} y={30} text={"mg/dL"}  style={ { stroke: "#38B6FF" }} />
 
 
 
@@ -114,8 +116,8 @@ useEffect(() => {
           data={glicose}/>  
         </VictoryChart>
 
-    <VictoryChart maxDomain={{ y:650}}  minDomain={{ y:0}}scale={{ x: "linear", y: "linear" }}   theme={VictoryTheme.material} width={450}>
-      <VictoryLabel x={25} y={30} text={"W"} />
+    <VictoryChart maxDomain={{ y:650}}  minDomain={{ y:0}}scale={{ x: "linear", y: "linear" }}   theme={VictoryTheme.material} width={480}>
+      <VictoryLabel x={25} y={30} text={"W"} style={ { stroke: "#000" }} />
         <VictoryLine 
           domain={{  y: [ 0, 650 ]}}
           interpolation="natural"
