@@ -5,7 +5,7 @@ Autores: Christian Kodaira; Lucas Gaspar Vettorazzo; THalles Demétrio; Ygor Par
 
 https://user-images.githubusercontent.com/79606629/222971169-4ecc6c24-fc5b-442b-b2c9-4a71eb871cfa.mp4
 
-Em conjunto com o aplicativo, foram utilizados diversos sensores integrados com um ESP32 que se comunica com via Bluetooth com o dispositivo móvel.
+Em conjunto com o aplicativo, foram utilizados diversos sensores integrados com um ESP32 que se comunica via Bluetooth com o dispositivo móvel.
 # smartcampusmaua-app
 
 The `smartcampusmaua-app` is developed using the React Native `0.68+` framework for both `Android / IOS` native App platform using TypeScript.
