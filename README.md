@@ -1,6 +1,11 @@
 # TCC- Desenvolvido em 2022 com intuito de realizar a Telemetria de uma Aeronave de Propulsão Humana
 O aplicativo foi desenvolvido em conjunto com o Smart Campus. 
 Autores: Christian Kodaira; Lucas Gaspar Vettorazzo; THalles Demétrio; Ygor Parada Frazão.
+
+
+https://user-images.githubusercontent.com/79606629/222971169-4ecc6c24-fc5b-442b-b2c9-4a71eb871cfa.mp4
+
+
 # smartcampusmaua-app
 
 The `smartcampusmaua-app` is developed using the React Native `0.68+` framework for both `Android / IOS` native App platform using TypeScript.
