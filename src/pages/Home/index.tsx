@@ -284,8 +284,8 @@ const [mqtt, setMqtt]= useState(0)
       setSensorData({...sensorData,  timestamp:  Date.now()});
        MqttPubClient({
          uri: 'mqtt://smartcampus.maua.br:1883',
-         user: 'PUBLIC',
-         pass: 'public',
+         user: ,
+         pass: ,
          auth: true,
          clientId: '',
          keepalive: 10,
